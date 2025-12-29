@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../visitor/index.html" class="logo">Eventos.uy</a>
+        </div>
+
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div id="guestAuth">
+                <a href="iniciar-sesion.html">Iniciar Sesión</a> / 
+                <a href="alta-usuario.html">Registrarse</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Events List -->
+            <ul class="events-list">
+                <!-- Event 1: Conferencia de Tecnología -->
+                <a href="consulta-evento-EV01.html" style="color: #333; text-decoration: none;">
+                    <li class="event-card">
+                        <div class="event-image">Conferencia<br>Tecnología</div>
+                        <div class="event-content">
+                            <h3>Conferencia de Tecnología</h3>
+                            <p>Evento sobre innovación tecnológica</p>
+                            <small style="color: #999;">
+                                Categorías: Tecnología, Innovación | 3 edición(es)
+                            </small>
+                        </div>
+                    </li>
+                </a>
+
+                <!-- Event 2: Maratón de Montevideo -->
+                <a href="consulta-evento-EV04.html" style="color: #333; text-decoration: none;">
+                    <li class="event-card">
+                        <div class="event-image">
+                            <img src="../../../imagens/IMG-EV04.png" alt="Maratón de Montevideo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <div class="event-content">
+                            <h3>Maratón de Montevideo</h3>
+                            <p>Competencia deportiva anual en la capital</p>
+                            <small style="color: #999;">
+                                Categorías: Deporte, Salud | 2 edición(es)
+                            </small>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

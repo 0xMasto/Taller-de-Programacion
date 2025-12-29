@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro a Edición - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../asistente/index.html" class="logo">Eventos.uy</a>
+    </div>
+
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">AT</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">Ana Torres</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US01.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../asistente/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+           <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="index.html" id="assistantLink">Registro a Edición</a>
+                </div>
+            </div>
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Page Title -->
+            <div class="page-content">
+                <h1 class="page-title">Registro a Edición de Evento</h1>
+                
+            </div>
+
+            <!-- Edition Summary -->
+            <div class="edition-detail-container" style="margin-bottom: 30px;">
+                <div class="edition-main">
+                    <div class="event-image" style="background-color: #ff9800;">MWC<br>2025</div>
+                    <div class="edition-info">
+                        <h2>Mobile World Congress 2025</h2>
+                        <p><strong>Evento:</strong> <a href="consulta-evento-EV01.html">Conferencia de Tecnolog&iacute;a</a></p>
+                        <p><strong>Sigla:</strong> MWC</p>
+                        <p><strong>Ubicaci&oacute;n:</strong> Barcelona, Espa&ntilde;a</p>
+                        <p><strong>Fechas:</strong> 12/12/2025 - 15/12/2025</p>
+                        <p><strong>Tipo de Registro:</strong> Full</p>
+                        <p><strong>Costo:</strong> $750</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration Status Messages -->
+            <div id="registrationMessages">
+                <!-- Success Message (hidden by default) -->
+                <div class="alert alert-success hidden" id="successMessage">
+                    <strong>✅ Registro Exitoso</strong><br>
+                    Tu registro ha sido confirmado. Se ha enviado un email de confirmación a tu dirección registrada.
+                </div>
+
+                <!-- Warning Message for existing registration -->
+                <div class="alert alert-info" id="existingRegistrationMessage" style="display: none;">
+                    <strong>ℹ️ Ya estás registrado</strong><br>
+                    Ya tienes un registro activo para esta edición. Puedes <a href="#" onclick="showEditOptions()">editar tu registro</a> o continuar con uno nuevo.
+                </div>
+
+                <!-- Error Messages -->
+                <div class="alert alert-danger hidden" id="errorMessage">
+                    <strong>❌ Error en el registro</strong><br>
+                    <span id="errorText">Ha ocurrido un error. Por favor, intenta nuevamente.</span>
+                </div>
+
+                <!-- Quota Warning -->
+                <div class="alert alert-danger hidden" id="quotaWarning">
+                    <strong>⚠️ Cupo Agotado</strong><br>
+                    El tipo de registro seleccionado ya no tiene cupos disponibles.
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="registration-section">
+                <div class="registration-header">Formulario de Registro</div>
+                
+                <form id="registrationForm" class="form-container" style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+
+                    <!-- Registration Method Selection -->
+                    <div class="form-group">
+                        <label class="form-label">Forma de registro *</label>
+                        <div class="checkbox-group" style="grid-template-columns: 1fr 1fr;">
+                            <div class="checkbox-item">
+                                <input type="radio" id="generalRegistration" name="registrationMethod" value="general" checked onchange="toggleSponsorshipCode()">
+                                <label for="generalRegistration">Registro General</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="sponsorshipRegistration" name="registrationMethod" value="sponsorship" onchange="toggleSponsorshipCode()">
+                                <label for="sponsorshipRegistration">Con Código de Patrocinio</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sponsorship Code Input (hidden by default) -->
+                    <div class="form-group hidden" id="sponsorshipCodeGroup">
+                        <label for="sponsorshipCode" class="form-label">Código de Patrocinio</label>
+                        <input type="text" id="sponsorshipCode" name="sponsorshipCode" class="form-control" placeholder="Ingresa tu código de patrocinio" style="text-transform: uppercase;">
+                        <div class="form-text">
+                            El código debe ser válido para esta edición, tu institución y el tipo de registro seleccionado.
+                        </div>
+                    </div>
+
+                    <!-- User Information (readonly) -->
+                    <div class="form-group">
+                        <label class="form-label">Información del usuario</label>
+                        <div class="grid-2">
+                            <div>
+                                <label for="userName" class="form-label">Nombre completo</label>
+                                <input type="text" id="userName" name="userName" class="form-control" value="Ana Torres" readonly>
+                            </div>
+                            <div>
+                                <label for="userEmail" class="form-label">Email</label>
+                                <input type="email" id="userEmail" name="userEmail" class="form-control" value="atorres@gmail.com" readonly>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="userInstitution" class="form-label">Institución</label>
+                            <input type="text" id="userInstitution" name="userInstitution" class="form-control" value="Facultad de Ingeniería" readonly>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Form Actions -->
+                    <div class="form-group" style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-success register-btn">Confirmar Registro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSponsorshipCode() {
+            const sponsorshipRadio = document.getElementById('sponsorshipRegistration');
+            const sponsorshipCodeGroup = document.getElementById('sponsorshipCodeGroup');
+            
+            if (sponsorshipRadio.checked) {
+                sponsorshipCodeGroup.classList.remove('hidden');
+            } else {
+                sponsorshipCodeGroup.classList.add('hidden');
+                // Clear the sponsorship code input when hiding
+                document.getElementById('sponsorshipCode').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Tipo de Registro - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #4a90e2;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        .price-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .price-checkbox {
+            margin-right: 10px;
+        }
+
+        .price-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <a href="#" onclick="logout()" style="color: #333; text-decoration: underline;">Cerrar sesión</a>
+                <div class="user-avatar" id="userAvatar">M</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html">Alta Evento</a>
+                    <a href="alta-edicion.html">Alta Edición</a>
+                    <a href="alta-institucion.html">Alta Institución</a>
+                    <a href="alta-patrocinio.html">Alta Patrocinio</a>
+                    <a href="alta-tipo-registro.html" style="font-weight: bold; color: #4a90e2;">Alta Tipo de Registro</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="events.html?category=tecnologia">Tecnología</a></li>
+                    <li><a href="events.html?category=innovacion">Innovación</a></li>
+                    <li><a href="events.html?category=literatura">Literatura</a></li>
+                    <li><a href="events.html?category=cultura">Cultura</a></li>
+                    <li><a href="events.html?category=musica">Música</a></li>
+                    <li><a href="events.html?category=deporte">Deporte</a></li>
+                    <li><a href="events.html?category=salud">Salud</a></li>
+                    <li><a href="events.html?category=entretenimiento">Entretenimiento</a></li>
+                    <li><a href="events.html?category=agro">Agro</a></li>
+                    <li><a href="events.html?category=negocios">Negocios</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="form-content">
+                <a href="consulta-tipo-registro.html" class="back-link">← Ver tipos de registro</a>
+                <h2 class="form-title">Alta de Tipo de Registro</h2>
+                <p style="color: #666; margin-bottom: 30px;">Crear un nuevo tipo de registro para eventos</p>
+
+                <form id="registrationTypeForm">
+                    <div class="form-group">
+                        <label for="registrationTypeName" class="form-label">Nombre del Tipo de Registro *</label>
+                        <input type="text" id="registrationTypeName" name="registrationTypeName" class="form-control" 
+                               placeholder="Ej: Registro Premium" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editionSelect" class="form-label">Edición de Evento *</label>
+                        <select id="editionSelect" name="editionSelect" class="form-control" required>
+                            <option value="">Seleccionar edición que organizas</option>
+                            <!-- Options will be populated dynamically based on organizer's editions -->
+                        </select>
+                        <small style="color: #666;">Solo se muestran las ediciones que organizas</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registrationDescription" class="form-label">Descripción *</label>
+                        <textarea id="registrationDescription" name="registrationDescription" class="form-control" rows="4"
+                                  placeholder="Describe las características de este tipo de registro..." required></textarea>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="registrationCost" class="form-label">Costo *</label>
+                            <input type="number" id="registrationCost" name="registrationCost" class="form-control" 
+                                   placeholder="500" min="0" step="0.01" required>
+                            <small style="color: #666;">Ingrese 0 si es gratuito</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cupo" class="form-label">Cupo *</label>
+                            <input type="number" id="cupo" name="cupo" class="form-control" 
+                                   placeholder="100" min="1" required>
+                            <small style="color: #666;">Cantidad máxima de participantes</small>
+                        </div>
+                    </div>
+
+                    <!-- Name conflict dialog -->
+                    <div id="nameConflictDialog" style="display: none; margin: 20px 0; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px;">
+                        <p style="color: #856404; margin-bottom: 10px;"><strong>⚠️ Nombre ya en uso:</strong> El nombre "<span id="conflictName"></span>" ya existe para esta edición.</p>
+                        <div>
+                            <button type="button" class="btn btn-warning" onclick="modifyName()" style="margin-right: 10px;">Elegir Nuevo Nombre</button>
+                            <button type="button" class="btn btn-secondary" onclick="cancelCreation()">Cancelar</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Crear Tipo de Registro</button>
+                        <a href="consulta-tipo-registro.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+
+                    <div id="registrationTypeError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="registrationTypeSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        // Mock data for organizer's editions (in real app would come from backend)
+        const organizerEditions = {
+            'miseventos': [
+                { id: 'EDEV03', name: 'Maratón de Montevideo 2024', eventName: 'Maratón de Montevideo' },
+                { id: 'EDEV04', name: 'Maratón de Montevideo 2022', eventName: 'Maratón de Montevideo' }
+            ],
+            'techorg': [
+                { id: 'EDEV08', name: 'Tecnología Punta del Este 2026', eventName: 'Conferencia de Tecnología' },
+                { id: 'EDEV09', name: 'Mobile World Congress 2025', eventName: 'Conferencia de Tecnología' },
+                { id: 'EDEV10', name: 'Web Summit 2026', eventName: 'Conferencia de Tecnología' }
+            ]
+        };
+
+        // Mock existing registration types per edition
+        const existingRegistrationTypes = {
+            'EDEV03': ['Corredor 21K', 'Corredor 10K', 'Caminata'],
+            'EDEV04': ['Corredor 21K', 'Corredor 5K'],
+            'EDEV08': ['Estudiante', 'Profesional', 'Premium'],
+            'EDEV09': ['Full', 'Estudiante'],
+            'EDEV10': ['Estudiante', 'Profesional']
+        };
+
+        // Check user authentication and populate editions
+        function checkUserAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                document.getElementById('guestAuth').style.display = 'none';
+                document.getElementById('userAuth').style.display = 'flex';
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                // Check if user is organizador
+                if (currentUser.type === 'organizador') {
+                    document.getElementById('profileSection').style.display = 'block';
+                    
+                    // Update profile link
+                    const profileLink = document.getElementById('profileLink');
+                    profileLink.href = `user-profile.html?nickname=${currentUser.nickname}`;
+                    
+                    // Populate editions dropdown with organizer's editions
+                    populateOrganizerEditions();
+                } else {
+                    // Redirect asistentes back to main page
+                    alert('Esta funcionalidad está disponible solo para organizadores.');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                // Redirect non-authenticated users to login
+                alert('Debe iniciar sesión como organizador para acceder a esta página.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Populate editions dropdown with organizer's editions
+        function populateOrganizerEditions() {
+            const editionSelect = document.getElementById('editionSelect');
+            const userEditions = organizerEditions[currentUser.nickname] || [];
+            
+            // Clear existing options except the first one
+            editionSelect.innerHTML = '<option value="">Seleccionar edición que organizas</option>';
+            
+            if (userEditions.length === 0) {
+                editionSelect.innerHTML += '<option value="" disabled>No tienes ediciones disponibles</option>';
+                return;
+            }
+            
+            userEditions.forEach(edition => {
+                const option = document.createElement('option');
+                option.value = edition.id;
+                option.textContent = `${edition.name} (${edition.eventName})`;
+                editionSelect.appendChild(option);
+            });
+        }
+
+        // Check if registration type name already exists for the selected edition
+        function checkNameUniqueness(editionId, name) {
+            const existingNames = existingRegistrationTypes[editionId] || [];
+            return !existingNames.includes(name.trim());
+        }
+
+        // Handle name conflict
+        function handleNameConflict(name) {
+            document.getElementById('conflictName').textContent = name;
+            document.getElementById('nameConflictDialog').style.display = 'block';
+            document.getElementById('registrationTypeName').classList.add('error');
+        }
+
+        // Modify name function
+        function modifyName() {
+            document.getElementById('nameConflictDialog').style.display = 'none';
+            document.getElementById('registrationTypeName').classList.remove('error');
+            document.getElementById('registrationTypeName').focus();
+        }
+
+        // Cancel creation function
+        function cancelCreation() {
+            if (confirm('¿Está seguro que desea cancelar la creación del tipo de registro?')) {
+                window.location.href = 'consulta-tipo-registro.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
+                localStorage.removeItem('currentUser');
+                alert('Sesión cerrada correctamente');
+                window.location.href = '../index.html';
+            }
+        }
+
+
+        // Form submission
+        document.getElementById('registrationTypeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Validando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.getElementById('registrationTypeError').style.display = 'none';
+            document.getElementById('registrationTypeSuccess').style.display = 'none';
+            document.getElementById('nameConflictDialog').style.display = 'none';
+            
+            const formData = new FormData(this);
+            const registrationTypeName = formData.get('registrationTypeName').trim();
+            const editionId = formData.get('editionSelect');
+            const registrationDescription = formData.get('registrationDescription').trim();
+            const registrationCost = formData.get('registrationCost');
+            const cupo = formData.get('cupo');
+            
+            // Basic validation
+            if (!registrationTypeName || !editionId || !registrationDescription || !registrationCost || !cupo) {
+                document.getElementById('registrationTypeError').textContent = 'Todos los campos marcados con * son obligatorios';
+                document.getElementById('registrationTypeError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Cost validation
+            if (parseFloat(registrationCost) < 0) {
+                document.getElementById('registrationTypeError').textContent = 'El costo no puede ser negativo';
+                document.getElementById('registrationTypeError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Cupo validation
+            if (parseInt(cupo) < 1) {
+                document.getElementById('registrationTypeError').textContent = 'El cupo debe ser al menos 1';
+                document.getElementById('registrationTypeError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Check name uniqueness for the selected edition
+            if (!checkNameUniqueness(editionId, registrationTypeName)) {
+                handleNameConflict(registrationTypeName);
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Simulate registration type creation process
+            submitButton.textContent = 'Creando tipo de registro...';
+            
+            setTimeout(() => {
+                // Create registration type data
+                const registrationTypeData = {
+                    editionId: editionId,
+                    name: registrationTypeName,
+                    description: registrationDescription,
+                    cost: parseFloat(registrationCost),
+                    cupo: parseInt(cupo),
+                    creationDate: new Date().toISOString(),
+                    organizerId: currentUser.nickname
+                };
+                
+                console.log('Tipo de registro creado:', registrationTypeData);
+                
+                // Add to existing names to prevent duplicates in same session
+                if (!existingRegistrationTypes[editionId]) {
+                    existingRegistrationTypes[editionId] = [];
+                }
+                existingRegistrationTypes[editionId].push(registrationTypeName);
+                
+                const costText = parseFloat(registrationCost) === 0 ? 'gratuito' : `$${registrationCost}`;
+                document.getElementById('registrationTypeSuccess').innerHTML = `
+                    <strong>¡Tipo de registro creado exitosamente!</strong><br>
+                    <strong>Nombre:</strong> ${registrationTypeName}<br>
+                    <strong>Costo:</strong> ${costText}<br>
+                    <strong>Cupo:</strong> ${cupo} participantes<br>
+                    <strong>Fecha de creación:</strong> ${new Date().toLocaleDateString('es-ES')}
+                `;
+                document.getElementById('registrationTypeSuccess').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                populateOrganizerEditions(); // Refresh dropdown
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect after 4 seconds
+                setTimeout(() => {
+                    window.location.href = 'consulta-tipo-registro.html';
+                }, 4000);
+            }, 1500);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserAuth();
+        });
+    </script>
+</body>
+</html>

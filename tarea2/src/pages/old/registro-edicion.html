@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro a Edición - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #4a90e2;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        .event-info {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .event-info h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .event-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .registration-type-card {
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .registration-type-card:hover {
+            border-color: #4a90e2;
+        }
+
+        .registration-type-card.selected {
+            border-color: #4a90e2;
+            background-color: #f0f7ff;
+        }
+
+        .type-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .type-price {
+            color: #28a745;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .type-description {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <a href="#" onclick="logout()" style="color: #333; text-decoration: underline;">Cerrar sesión</a>
+                <div class="user-avatar" id="userAvatar">M</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <div id="organizerOptions" style="display: none;">
+                        <a href="alta-evento.html">Alta Evento</a>
+                        <a href="alta-edicion.html">Alta Edición</a>
+                        <a href="alta-institucion.html">Alta Institución</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="events.html?category=tecnologia">Tecnología</a></li>
+                    <li><a href="events.html?category=innovacion">Innovación</a></li>
+                    <li><a href="events.html?category=literatura">Literatura</a></li>
+                    <li><a href="events.html?category=cultura">Cultura</a></li>
+                    <li><a href="events.html?category=musica">Música</a></li>
+                    <li><a href="events.html?category=deporte">Deporte</a></li>
+                    <li><a href="events.html?category=salud">Salud</a></li>
+                    <li><a href="events.html?category=entretenimiento">Entretenimiento</a></li>
+                    <li><a href="events.html?category=agro">Agro</a></li>
+                    <li><a href="events.html?category=negocios">Negocios</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="form-content">
+                <a href="event-detail.html" class="back-link" id="backLink">← Volver al evento</a>
+                <h2 class="form-title">Registro a Edición de Evento</h2>
+                <p style="color: #666; margin-bottom: 30px;">Complete su registro para participar en esta edición</p>
+
+                <!-- Event Information -->
+                <div class="event-info" id="eventInfo">
+                    <h3 id="eventTitle">Cargando información del evento...</h3>
+                    <p><strong>Fecha:</strong> <span id="eventDates">-</span></p>
+                    <p><strong>Ubicación:</strong> <span id="eventLocation">-</span></p>
+                    <p><strong>Cupos disponibles:</strong> <span id="availableSlots">-</span></p>
+                </div>
+
+                <form id="registrationForm">
+                    <h3>Seleccionar Tipo de Registro</h3>
+                    
+                    <!-- Registration Types -->
+                    <div id="registrationTypes">
+                        <div class="registration-type-card selected" data-type-id="1">
+                            <div class="type-name">Registro General</div>
+                            <div class="type-price">Gratuito</div>
+                            <div class="type-description">Acceso completo al evento con todas las actividades incluidas</div>
+                        </div>
+                        
+                        <div class="registration-type-card" data-type-id="2">
+                            <div class="type-name">Registro Premium</div>
+                            <div class="type-price">$50 USD</div>
+                            <div class="type-description">Incluye material adicional, certificado y acceso a sesiones exclusivas</div>
+                        </div>
+                        
+                        <div class="registration-type-card" data-type-id="3">
+                            <div class="type-name">Registro con Patrocinio</div>
+                            <div class="type-price">Descuento especial</div>
+                            <div class="type-description">Para participantes con código de patrocinio válido</div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="selectedTypeId" name="selectedTypeId" value="1">
+
+                    <!-- Sponsorship Code (optional) -->
+                    <div class="form-group" id="sponsorshipGroup" style="display: none;">
+                        <label for="sponsorshipCode" class="form-label">Código de Patrocinio</label>
+                        <input type="text" id="sponsorshipCode" name="sponsorshipCode" class="form-control" 
+                               placeholder="Ingrese el código de patrocinio">
+                        <small style="color: #666;">Opcional: Ingrese un código válido para obtener descuentos especiales</small>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-group">
+                        <label for="additionalInfo" class="form-label">Información Adicional</label>
+                        <textarea id="additionalInfo" name="additionalInfo" class="form-control" rows="3"
+                                  placeholder="Cualquier información adicional que desee compartir (opcional)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Confirmar Registro</button>
+                        <a href="event-detail.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+
+                    <div id="registrationError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="registrationSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let eventId = null;
+        let editionId = null;
+
+        // Sample event data
+        const eventData = {
+            1: {
+                name: "TechConf Uruguay 2025",
+                dates: "15-20 Octubre 2025", 
+                location: "Centro de Convenciones, Montevideo",
+                availableSlots: 150
+            }
+        };
+
+        // Check user authentication
+        function checkUserAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                document.getElementById('guestAuth').style.display = 'none';
+                document.getElementById('userAuth').style.display = 'flex';
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                // Check if user is asistente
+                if (currentUser.type === 'asistente') {
+                    document.getElementById('profileSection').style.display = 'block';
+                    
+                    // Update profile link
+                    const profileLink = document.getElementById('profileLink');
+                    profileLink.href = `user-profile.html?nickname=${currentUser.identifier.split('@')[0]}`;
+                } else if (currentUser.type === 'organizador') {
+                    document.getElementById('profileSection').style.display = 'block';
+                    document.getElementById('organizerOptions').style.display = 'block';
+                    
+                    // Update profile link
+                    const profileLink = document.getElementById('profileLink');
+                    profileLink.href = `user-profile.html?nickname=${currentUser.identifier.split('@')[0]}`;
+                } else {
+                    // Redirect other users back to main page
+                    alert('Esta funcionalidad está disponible solo para usuarios registrados.');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                // Redirect non-authenticated users to login
+                alert('Debe iniciar sesión para registrarse en eventos.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
+                localStorage.removeItem('currentUser');
+                alert('Sesión cerrada correctamente');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Load event information
+        function loadEventInfo() {
+            const urlParams = new URLSearchParams(window.location.search);
+            eventId = urlParams.get('eventId') || '1';
+            editionId = urlParams.get('editionId') || '1';
+            
+            const event = eventData[eventId];
+            if (event) {
+                document.getElementById('eventTitle').textContent = event.name;
+                document.getElementById('eventDates').textContent = event.dates;
+                document.getElementById('eventLocation').textContent = event.location;
+                document.getElementById('availableSlots').textContent = event.availableSlots;
+            }
+
+            // Update back link
+            document.getElementById('backLink').href = `event-detail.html?id=${eventId}`;
+        }
+
+        // Registration type selection
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.registration-type-card')) {
+                const card = e.target.closest('.registration-type-card');
+                
+                // Remove selected class from all cards
+                document.querySelectorAll('.registration-type-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked card
+                card.classList.add('selected');
+                
+                // Update hidden input
+                const typeId = card.getAttribute('data-type-id');
+                document.getElementById('selectedTypeId').value = typeId;
+                
+                // Show/hide sponsorship code field
+                const sponsorshipGroup = document.getElementById('sponsorshipGroup');
+                if (typeId === '3') {
+                    sponsorshipGroup.style.display = 'block';
+                } else {
+                    sponsorshipGroup.style.display = 'none';
+                }
+            }
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Procesando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.getElementById('registrationError').style.display = 'none';
+            document.getElementById('registrationSuccess').style.display = 'none';
+            
+            const formData = new FormData(this);
+            const selectedTypeId = formData.get('selectedTypeId');
+            const sponsorshipCode = formData.get('sponsorshipCode');
+            
+            // Simulate registration
+            setTimeout(() => {
+                // Get selected type name
+                const selectedCard = document.querySelector('.registration-type-card.selected');
+                const typeName = selectedCard.querySelector('.type-name').textContent;
+                
+                document.getElementById('registrationSuccess').textContent = `¡Registro exitoso! Te has registrado con "${typeName}" para ${eventData[eventId].name}.`;
+                document.getElementById('registrationSuccess').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 3000);
+            }, 1000);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserAuth();
+            loadEventInfo();
+        });
+    </script>
+</body>
+</html>

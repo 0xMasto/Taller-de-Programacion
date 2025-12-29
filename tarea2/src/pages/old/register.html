@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .register-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .register-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <a href="events.html">Eventos</a> / <a href="users.html">Usuarios</a> / <a href="login.html">Iniciar Sesión</a>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="events.html?category=tecnologia">Tecnología</a></li>
+                    <li><a href="events.html?category=innovacion">Innovación</a></li>
+                    <li><a href="events.html?category=literatura">Literatura</a></li>
+                    <li><a href="events.html?category=cultura">Cultura</a></li>
+                    <li><a href="events.html?category=musica">Música</a></li>
+                    <li><a href="events.html?category=deporte">Deporte</a></li>
+                    <li><a href="events.html?category=salud">Salud</a></li>
+                    <li><a href="events.html?category=entretenimiento">Entretenimiento</a></li>
+                    <li><a href="events.html?category=agro">Agro</a></li>
+                    <li><a href="events.html?category=negocios">Negocios</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="register-content">
+                <h2 class="register-title">Registro de Usuario</h2>
+                <p style="color: #666; margin-bottom: 20px;">Crea tu cuenta para acceder al sistema</p>
+
+            <!-- User Type Selection -->
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h3 class="card-title">Tipo de Usuario</h3>
+                </div>
+                <div class="grid-2">
+                    <div class="card" id="assistantOption" onclick="selectUserType('asistente')" style="cursor: pointer; border: 2px solid #2c5aa0;">
+                        <h4>👤 Asistente</h4>
+                        <p>Para participantes de eventos</p>
+                        <ul>
+                            <li>Registrarse en eventos</li>
+                            <li>Ver historial personal</li>
+                            <li>Gestionar perfil</li>
+                        </ul>
+                    </div>
+                    <div class="card" id="organizerOption" onclick="selectUserType('organizador')" style="cursor: pointer; border: 2px solid transparent;">
+                        <h4>👨‍💼 Organizador</h4>
+                        <p>Para creadores de eventos</p>
+                        <ul>
+                            <li>Crear eventos</li>
+                            <li>Gestionar ediciones</li>
+                            <li>Ver registros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Información Personal</h3>
+                </div>
+
+                <form id="registerForm">
+                    <input type="hidden" id="userType" name="userType" value="asistente">
+
+                    <!-- Basic Information -->
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="nickname" class="form-label">Nickname *</label>
+                            <input type="text" id="nickname" name="nickname" class="form-control" 
+                                   placeholder="Ej: juan123" required>
+                            <span class="error-message" id="nicknameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-control" 
+                                   placeholder="Ej: juan@email.com" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">Nombre *</label>
+                            <input type="text" id="firstName" name="firstName" class="form-control" 
+                                   placeholder="Tu nombre" required>
+                            <span class="error-message" id="firstNameError"></span>
+                        </div>
+
+                        <div class="form-group" id="lastNameGroup">
+                            <label for="lastName" class="form-label">Apellido *</label>
+                            <input type="text" id="lastName" name="lastName" class="form-control" 
+                                   placeholder="Tu apellido" required>
+                            <span class="error-message" id="lastNameError"></span>
+                        </div>
+                    </div>
+
+                    <!-- Assistant-specific fields -->
+                    <div id="assistantFields">
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label for="birthDate" class="form-label">Fecha de Nacimiento *</label>
+                                <input type="date" id="birthDate" name="birthDate" class="form-control" required>
+                                <span class="error-message" id="birthDateError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="institution" class="form-label">Institución</label>
+                                <select id="institution" name="institution" class="form-control">
+                                    <option value="">Sin institución</option>
+                                    <option value="udelar">Universidad de la República</option>
+                                    <option value="utec">UTEC</option>
+                                    <option value="ort">Universidad ORT</option>
+                                    <option value="ucudal">Universidad Católica</option>
+                                    <option value="um">Universidad de Montevideo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Organizer-specific fields -->
+                    <div id="organizerFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="description" class="form-label">Descripción *</label>
+                            <textarea id="description" name="description" class="form-control" rows="4"
+                                      placeholder="Describe tu experiencia como organizador..."></textarea>
+                            <span class="error-message" id="descriptionError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website" class="form-label">Sitio Web</label>
+                            <input type="url" id="website" name="website" class="form-control" 
+                                   placeholder="https://tu-sitio-web.com">
+                        </div>
+                    </div>
+
+                    <!-- Profile Image (Optional) -->
+                    <div class="form-group">
+                        <label for="profileImage" class="form-label">Imagen de Perfil </label>
+                        <input type="file" id="profileImage" name="profileImage" class="form-control" 
+                               accept="image/*" onchange="previewImage(event)">
+                        <div class="image-preview-container" id="imagePreviewContainer" style="display: none; margin-top: 10px;">
+                            <img id="imagePreview" src="" alt="Vista previa" style="max-width: 150px; max-height: 150px; border-radius: 8px; border: 2px solid #ddd;">
+                            <button type="button" onclick="removeImage()" style="margin-left: 10px; padding: 5px 10px; background-color: #dc3545; color: white; border: none; border-radius: 3px; cursor: pointer;">Quitar imagen</button>
+                        </div>
+                        <small style="color: #666; font-size: 0.875rem;">Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 2MB</small>
+                        <span class="error-message" id="profileImageError"></span>
+                    </div>
+
+                    <!-- Password fields -->
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="password" class="form-label">Contraseña *</label>
+                            <input type="password" id="password" name="password" class="form-control" 
+                                   placeholder="Mínimo 6 caracteres" required>
+                            <span class="error-message" id="passwordError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirmar Contraseña *</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" 
+                                   placeholder="Repite tu contraseña" required>
+                            <span class="error-message" id="confirmPasswordError"></span>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                        <a href="login.html" class="btn btn-secondary">Ya tengo cuenta</a>
+                    </div>
+
+                    <div id="registerError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="registerSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User type selection
+        function selectUserType(type) {
+            document.getElementById('userType').value = type;
+            
+            // Update visual selection
+            document.getElementById('assistantOption').style.border = '2px solid transparent';
+            document.getElementById('organizerOption').style.border = '2px solid transparent';
+            
+            if (type === 'asistente') {
+                document.getElementById('assistantOption').style.border = '2px solid #2c5aa0';
+                document.getElementById('assistantFields').style.display = 'block';
+                document.getElementById('organizerFields').style.display = 'none';
+                document.getElementById('lastName').required = true;
+                document.getElementById('birthDate').required = true;
+                document.getElementById('description').required = false;
+            } else {
+                document.getElementById('organizerOption').style.border = '2px solid #2c5aa0';
+                document.getElementById('assistantFields').style.display = 'none';
+                document.getElementById('organizerFields').style.display = 'block';
+                document.getElementById('lastName').required = false;
+                document.getElementById('birthDate').required = false;
+                document.getElementById('description').required = true;
+            }
+        }
+
+        // Form validation and submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Procesando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
+            document.getElementById('registerError').style.display = 'none';
+            document.getElementById('registerSuccess').style.display = 'none';
+            
+            let hasErrors = false;
+            
+            // Get form values
+            const formData = new FormData(this);
+            const userType = formData.get('userType');
+            const nickname = formData.get('nickname').trim();
+            const email = formData.get('email').trim();
+            const firstName = formData.get('firstName').trim();
+            const lastName = formData.get('lastName').trim();
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            
+            // Basic validations
+            if (!nickname || nickname.length < 3) {
+                showError('nickname', 'El nickname debe tener al menos 3 caracteres');
+                hasErrors = true;
+            }
+            
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('email', 'El email no tiene un formato válido');
+                hasErrors = true;
+            }
+            
+            if (!firstName) {
+                showError('firstName', 'El nombre es requerido');
+                hasErrors = true;
+            }
+            
+            if (userType === 'asistente' && !lastName) {
+                showError('lastName', 'El apellido es requerido para asistentes');
+                hasErrors = true;
+            }
+            
+            if (userType === 'asistente') {
+                const birthDate = formData.get('birthDate');
+                if (!birthDate) {
+                    showError('birthDate', 'La fecha de nacimiento es requerida');
+                    hasErrors = true;
+                }
+            }
+            
+            if (userType === 'organizador') {
+                const description = formData.get('description').trim();
+                if (!description || description.length < 20) {
+                    showError('description', 'La descripción debe tener al menos 20 caracteres');
+                    hasErrors = true;
+                }
+            }
+            
+            if (!password || password.length < 6) {
+                showError('password', 'La contraseña debe tener al menos 6 caracteres');
+                hasErrors = true;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('confirmPassword', 'Las contraseñas no coinciden');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
+                // Restore button state on validation errors
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            } else {
+                // Simulate successful registration
+                const userData = {
+                    nickname: nickname,
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    userType: userType,
+                    registrationDate: new Date().toISOString()
+                };
+                
+                // Add type-specific data
+                if (userType === 'asistente') {
+                    userData.birthDate = formData.get('birthDate');
+                    userData.institution = formData.get('institution');
+                } else {
+                    userData.description = formData.get('description');
+                    userData.website = formData.get('website');
+                }
+                
+                // Handle optional profile image
+                const profileImageFile = formData.get('profileImage');
+                if (profileImageFile && profileImageFile.size > 0) {
+                    // In a real application, you would upload this to a server
+                    // For now, we'll just store the file info
+                    userData.hasProfileImage = true;
+                    userData.profileImageName = profileImageFile.name;
+                    userData.profileImageSize = profileImageFile.size;
+                    console.log('Profile image selected:', profileImageFile.name, 'Size:', profileImageFile.size, 'bytes');
+                } else {
+                    userData.hasProfileImage = false;
+                }
+                
+                document.getElementById('registerSuccess').textContent = `¡Registro exitoso! Bienvenido/a ${firstName}. Ahora puedes iniciar sesión.`;
+                document.getElementById('registerSuccess').style.display = 'block';
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            }
+        });
+        
+        function showError(fieldId, message) {
+            document.getElementById(fieldId + 'Error').textContent = message;
+            document.getElementById(fieldId).classList.add('error');
+        }
+
+        // Image preview functionality
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const preview = document.getElementById('imagePreview');
+            const errorElement = document.getElementById('profileImageError');
+            
+            // Clear previous errors
+            errorElement.textContent = '';
+            event.target.classList.remove('error');
+            
+            if (file) {
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    showError('profileImage', 'Formato de imagen no válido. Use JPG, PNG o GIF.');
+                    return;
+                }
+                
+                // Validate file size (2MB = 2 * 1024 * 1024 bytes)
+                const maxSize = 2 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    showError('profileImage', 'La imagen es demasiado grande. Tamaño máximo: 2MB.');
+                    return;
+                }
+                
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        }
+
+        // Remove image functionality
+        function removeImage() {
+            const fileInput = document.getElementById('profileImage');
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const errorElement = document.getElementById('profileImageError');
+            
+            fileInput.value = '';
+            previewContainer.style.display = 'none';
+            errorElement.textContent = '';
+            fileInput.classList.remove('error');
+        }
+    </script>
+</body>
+</html>

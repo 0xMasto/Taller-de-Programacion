@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - eventos.uy</title>
+    <link rel="stylesheet" href="../css/eventos-app.css">
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <div class="user-profile-section">
+                    <div class="user-avatar" id="userAvatar">
+                        <img id="userImage" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
+                        <span id="userInitial">U</span>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Usuario</span>
+                        <div class="user-actions">
+                            <a href="#" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                            <span style="color: #ccc; margin: 0 5px;">|</span>
+                            <a href="#" onclick="logout()" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="consulta-registro.html" id="assistantLink">Mis Registros</a>
+                    <a href="alta-evento.html" id="organizerLink1" style="display: none;">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2" style="display: none;">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3" style="display: none;">Alta Institución</a>
+                </div>
+            </div>
+            <!-- User Types -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Tipos de Usuario</div>
+                <ul class="category-list">
+                    <li><a href="#" data-user-type="all">Todos los usuarios</a></li>
+                    <li><a href="#" data-user-type="organizador">Organizadores</a></li>
+                    <li><a href="#" data-user-type="asistente">Asistentes</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Events Link -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                    <a href="events.html" style="color: #333; text-decoration: underline;">Eventos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar usuarios...">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-type="all">Todos</button>
+                <button class="filter-tab" data-type="organizador">Organizadores</button>
+                <button class="filter-tab" data-type="asistente">Asistentes</button>
+            </div>
+
+            <!-- Users List -->
+            <ul class="users-list">
+                <!-- User 1: Ana Torres -->
+                <a href="user-profile.html?nickname=atorres" style="color: #333; text-decoration: none;">
+                    <li class="user-card">
+                        <div class="user-image">
+                            <img src="../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <div class="user-content">
+                            <h3></h3>
+                            <p><strong>@atorres</strong> • <span class="user-type-badge badge-asistente">Asistente</span></p>
+                            <p>Estudiante - Facultad de Ingeniería</p>
+                            <p><strong>Email:</strong> atorres@gmail.com</p>
+                        </div>
+                    </li>
+                </a>
+
+                <!-- User 2: MisEventos -->
+                <a href="user-profile.html?nickname=miseventos" style="color: #333; text-decoration: none;">
+                    <li class="user-card">
+                        <div class="user-image">
+                            <img src="../../imagens/IMG-US04.jpeg" alt="MisEventos" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <div class="user-content">
+                            <h3>MisEventos</h3>
+                            <p><strong>@miseventos</strong> • <span class="user-type-badge badge-organizador">Organizador</span></p>
+                            <p>Empresa de organización de eventos.</p>
+                            <p><strong>Email:</strong> contacto@miseventos.com</p>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Check login state and update UI
+        function checkLoginState() {
+            const currentUser = localStorage.getItem('currentUser');
+            const guestAuth = document.getElementById('guestAuth');
+            const userAuth = document.getElementById('userAuth');
+            const profileSection = document.getElementById('profileSection');
+            const profileLink = document.getElementById('profileLink');
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            const userImage = document.getElementById('userImage');
+            const userInitial = document.getElementById('userInitial');
+            const userProfileLink = document.getElementById('userProfileLink');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                guestAuth.style.display = 'none';
+                userAuth.style.display = 'block';
+                profileSection.style.display = 'block';
+                
+                // Update user name in header
+                userName.textContent = user.name;
+                
+                // Update profile links with user nickname
+                profileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                userProfileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                
+                // Update user avatar - try to show image, fallback to initial
+                if (user.image) {
+                    userImage.src = `../../imagens/${user.image}`;
+                    userImage.alt = user.name;
+                    userImage.style.display = 'block';
+                    userInitial.style.display = 'none';
+                    
+                    // Handle image load error
+                    userImage.onerror = function() {
+                        userImage.style.display = 'none';
+                        userInitial.style.display = 'flex';
+                        userInitial.textContent = user.name.charAt(0).toUpperCase();
+                    };
+                } else {
+                    userImage.style.display = 'none';
+                    userInitial.style.display = 'flex';
+                    userInitial.textContent = user.name.charAt(0).toUpperCase();
+                }
+                
+                // Show/hide user-type-specific options
+                const assistantLink = document.getElementById('assistantLink');
+                const organizerLink1 = document.getElementById('organizerLink1');
+                const organizerLink2 = document.getElementById('organizerLink2');
+                const organizerLink3 = document.getElementById('organizerLink3');
+                
+                if (user.type === 'organizador') {
+                    // Show organizer options, hide assistant options
+                    if (assistantLink) assistantLink.style.display = 'none';
+                    if (organizerLink1) organizerLink1.style.display = 'block';
+                    if (organizerLink2) organizerLink2.style.display = 'block';
+                    if (organizerLink3) organizerLink3.style.display = 'block';
+                } else {
+                    // Show assistant options, hide organizer options
+                    if (assistantLink) assistantLink.style.display = 'block';
+                    if (organizerLink1) organizerLink1.style.display = 'none';
+                    if (organizerLink2) organizerLink2.style.display = 'none';
+                    if (organizerLink3) organizerLink3.style.display = 'none';
+                }
+            } else {
+                guestAuth.style.display = 'block';
+                userAuth.style.display = 'none';
+                profileSection.style.display = 'none';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        }
+
+        // Filter functionality
+        function initializeFilters() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const sidebarLinks = document.querySelectorAll('[data-user-type]');
+            const userCards = document.querySelectorAll('.user-card');
+
+            // Add click handlers to filter tabs
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const filterType = this.getAttribute('data-type');
+                    filterUsers(filterType);
+                    updateActiveTab(this);
+                });
+            });
+
+            // Add click handlers to sidebar links
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const filterType = this.getAttribute('data-user-type');
+                    filterUsers(filterType);
+                    updateActiveTabByType(filterType);
+                });
+            });
+
+            // Add user type data attributes to existing cards
+            addUserTypeAttributes();
+        }
+
+        // Add user type data attributes to existing user cards
+        function addUserTypeAttributes() {
+            const userCards = document.querySelectorAll('.user-card');
+            userCards.forEach(card => {
+                const userTypeBadge = card.querySelector('.user-type-badge');
+                if (userTypeBadge) {
+                    let userType = 'asistente'; // default
+                    if (userTypeBadge.classList.contains('badge-organizador')) {
+                        userType = 'organizador';
+                    }
+                    card.setAttribute('data-user-type', userType);
+                }
+            });
+        }
+
+        // Filter users based on type
+        function filterUsers(filterType) {
+            const userCards = document.querySelectorAll('.user-card');
+            
+            userCards.forEach(card => {
+                const cardUserType = card.getAttribute('data-user-type');
+                
+                if (filterType === 'all' || filterType === cardUserType) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update results count
+            updateResultsCount(filterType);
+        }
+
+        // Update active tab styling
+        function updateActiveTab(activeTab) {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => tab.classList.remove('active'));
+            activeTab.classList.add('active');
+        }
+
+        // Update active tab by filter type
+        function updateActiveTabByType(filterType) {
+            const targetTab = document.querySelector(`[data-type="${filterType}"]`);
+            if (targetTab) {
+                updateActiveTab(targetTab);
+            }
+        }
+
+        // Update results count
+        function updateResultsCount(filterType) {
+            const userCards = document.querySelectorAll('.user-card');
+            const visibleCards = Array.from(userCards).filter(card => card.style.display !== 'none');
+            
+            // Add or update results count display
+            let resultsCount = document.querySelector('.results-count');
+            if (!resultsCount) {
+                resultsCount = document.createElement('div');
+                resultsCount.className = 'results-count';
+                resultsCount.style.cssText = 'margin: 10px 0; color: #666; font-size: 14px;';
+                
+                const usersList = document.querySelector('.users-list');
+                usersList.parentNode.insertBefore(resultsCount, usersList);
+            }
+
+            const filterText = {
+                'all': 'todos los usuarios',
+                'organizador': 'organizadores',
+                'asistente': 'asistentes'
+            }[filterType] || 'usuarios';
+
+            resultsCount.textContent = `Mostrando ${visibleCards.length} ${filterText}`;
+        }
+
+        // Search functionality
+        function initializeSearch() {
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const userCards = document.querySelectorAll('.user-card');
+                
+                userCards.forEach(card => {
+                    const userName = card.querySelector('h3 a').textContent.toLowerCase();
+                    const userNickname = card.querySelector('p strong').textContent.toLowerCase();
+                    const userEmail = card.querySelector('p:last-child').textContent.toLowerCase();
+                    
+                    const matchesSearch = searchTerm === '' || 
+                        userName.includes(searchTerm) || 
+                        userNickname.includes(searchTerm) || 
+                        userEmail.includes(searchTerm);
+                    
+                    // Only show if matches search AND current filter
+                    const currentFilter = document.querySelector('.filter-tab.active').getAttribute('data-type');
+                    const userType = card.getAttribute('data-user-type');
+                    const matchesFilter = currentFilter === 'all' || currentFilter === userType;
+                    
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update results count
+                const currentFilter = document.querySelector('.filter-tab.active').getAttribute('data-type');
+                updateResultsCount(currentFilter);
+            }
+
+            // Search on button click
+            searchBtn.addEventListener('click', performSearch);
+
+            // Search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Real-time search as user types
+            searchInput.addEventListener('input', function() {
+                // Debounce the search to avoid too many calls
+                clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(performSearch, 300);
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginState();
+            initializeFilters();
+            initializeSearch();
+            
+            // Show initial count
+            updateResultsCount('all');
+        });
+    </script>
+
+</body>
+</html>

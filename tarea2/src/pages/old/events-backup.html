@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - eventos.uy</title>
+    <link rel="stylesheet" href="../css/eventos-app.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .events-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-card {
+            display: flex;
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .event-card:hover {
+            background-color: #f8f8f8;
+        }
+
+        .event-image {
+            width: 80px;
+            height: 80px;
+            background-color: #333;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .event-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .event-content p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-actions a:hover {
+            text-decoration: underline !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <div class="user-profile-section">
+                    <div class="user-avatar" id="userAvatar">
+                        <img id="userImage" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
+                        <span id="userInitial">U</span>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Usuario</span>
+                        <div class="user-actions">
+                            <a href="#" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                            <span style="color: #ccc; margin: 0 5px;">|</span>
+                            <a href="#" onclick="logout()" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="consulta-registro.html" id="assistantLink">Mis Registros</a>
+                    <a href="alta-evento.html" id="organizerLink1" style="display: none;">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2" style="display: none;">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3" style="display: none;">Alta Institución</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <!-- Events List -->
+            <ul class="events-list">
+                <!-- Event 1: Conferencia de Tecnología -->
+                <li class="event-card">
+                    <div class="event-image">Conferencia<br>Tecnología</div>
+                    <div class="event-content">
+                        <h3><a href="event-detail.html?id=EV01" style="color: #333; text-decoration: none;">Conferencia de Tecnología</a></h3>
+                        <p>Evento sobre innovación tecnológica</p>
+                        <small style="color: #999;">
+                            Categorías: Tecnología, Innovación | 3 edición(es)
+                        </small>
+                    </div>
+                </li>
+
+                <!-- Event 2: Maratón de Montevideo -->
+                <li class="event-card">
+                    <div class="event-image">
+                        <img src="../../imagens/IMG-EV04.png" alt="Maratón de Montevideo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                    </div>
+                    <div class="event-content">
+                        <h3><a href="event-detail.html?id=EV04" style="color: #333; text-decoration: none;">Maratón de Montevideo</a></h3>
+                        <p>Competencia deportiva anual en la capital</p>
+                        <small style="color: #999;">
+                            Categorías: Deporte, Salud | 2 edición(es)
+                        </small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Check login state and update UI
+        function checkLoginState() {
+            const currentUser = localStorage.getItem('currentUser');
+            const guestAuth = document.getElementById('guestAuth');
+            const userAuth = document.getElementById('userAuth');
+            const profileSection = document.getElementById('profileSection');
+            const profileLink = document.getElementById('profileLink');
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            const userImage = document.getElementById('userImage');
+            const userInitial = document.getElementById('userInitial');
+            const userProfileLink = document.getElementById('userProfileLink');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                guestAuth.style.display = 'none';
+                userAuth.style.display = 'block';
+                profileSection.style.display = 'block';
+                
+                // Update user name in header
+                userName.textContent = user.name;
+                
+                // Update profile links with user nickname
+                profileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                userProfileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                
+                // Update user avatar - try to show image, fallback to initial
+                if (user.image) {
+                    userImage.src = `../../imagens/${user.image}`;
+                    userImage.alt = user.name;
+                    userImage.style.display = 'block';
+                    userInitial.style.display = 'none';
+                    
+                    // Handle image load error
+                    userImage.onerror = function() {
+                        userImage.style.display = 'none';
+                        userInitial.style.display = 'flex';
+                        userInitial.textContent = user.name.charAt(0).toUpperCase();
+                    };
+                } else {
+                    userImage.style.display = 'none';
+                    userInitial.style.display = 'flex';
+                    userInitial.textContent = user.name.charAt(0).toUpperCase();
+                }
+                
+                // Show/hide user-type-specific options
+                const assistantLink = document.getElementById('assistantLink');
+                const organizerLink1 = document.getElementById('organizerLink1');
+                const organizerLink2 = document.getElementById('organizerLink2');
+                const organizerLink3 = document.getElementById('organizerLink3');
+                
+                if (user.type === 'organizador') {
+                    // Show organizer options, hide assistant options
+                    if (assistantLink) assistantLink.style.display = 'none';
+                    if (organizerLink1) organizerLink1.style.display = 'block';
+                    if (organizerLink2) organizerLink2.style.display = 'block';
+                    if (organizerLink3) organizerLink3.style.display = 'block';
+                } else {
+                    // Show assistant options, hide organizer options
+                    if (assistantLink) assistantLink.style.display = 'block';
+                    if (organizerLink1) organizerLink1.style.display = 'none';
+                    if (organizerLink2) organizerLink2.style.display = 'none';
+                    if (organizerLink3) organizerLink3.style.display = 'none';
+                }
+            } else {
+                guestAuth.style.display = 'block';
+                userAuth.style.display = 'none';
+                profileSection.style.display = 'none';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginState();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Ana Torres - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../visitor/index.html" class="logo">Eventos.uy</a>
+        </div>
+
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div id="guestAuth">
+                <a href="iniciar-sesion.html">Iniciar Sesión</a> / 
+                <a href="alta-usuario.html">Registrarse</a>
+            </div>
+        </div>
+    </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Profile Content -->
+            <div class="profile-main">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-large">
+                        <img src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <div class="profile-name">
+                        <h2>Ana Torres</h2>
+                        <p><strong>@atorres</strong> • <span class="user-type-badge badge-asistente">Asistente</span></p>
+                        <p style="color: #666;">Estudiante de Ingeniería en Computación</p>
+                    </div>
+                </div>
+
+                <!-- Profile Tabs -->
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Información</div>
+                    <div class="profile-tab">Registros</div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <!-- Information Tab -->
+                    <div class="tab-content active">
+                        <div class="profile-section">
+                            <div class="section-title">Información Pública</div>
+                            <div class="profile-info">
+                                <p><strong>Nombre:</strong> Ana Torres</p>
+                                <p><strong>Nickname:</strong> atorres</p>
+                                <p><strong>Institución:</strong> Facultad de Ingeniería</p>
+                                <p><strong>Tipo de usuario:</strong> Asistente</p>
+                                <p><strong>Fecha de registro:</strong> 15 de Mayo 2023</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Public Activity Tab -->
+                    <div class="tab-content">
+                        <div class="profile-section">
+                            <div class="section-title">Historial de Registros</div>
+                            <div class="registrations-list">
+                                <!-- Registration 1 - From data.json RE02 -->
+                                <div class="registration-card">
+                                    <div class="registration-header">
+                                        <div class="registration-title">Maratón de Montevideo 2024 - Corredor 21K</div>
+                                    </div>
+                                </div>
+
+                                <!-- Registration 2 - From data.json RE03 -->
+                                <div class="registration-card">
+                                    <div class="registration-header">
+                                        <div class="registration-title">Web Summit 2026 - Estudiante</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Cambio de pestañas por índice
+        (function() {
+          var tabs = document.querySelectorAll('.profile-tab');
+          var contents = document.querySelectorAll('.tab-content');
+          if (!tabs.length || !contents.length) return;
+          tabs.forEach(function(tab, index) {
+            tab.addEventListener('click', function() {
+              tabs.forEach(function(t) { t.classList.remove('active'); });
+              contents.forEach(function(c) { c.classList.remove('active'); });
+              tab.classList.add('active');
+              if (contents[index]) { contents[index].classList.add('active'); }
+            });
+          });
+        })();
+        </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiante - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <div class="header-left">
+      <a href="../asistente/index.html" class="logo">Eventos.uy</a>
+    </div>
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">AT</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">Ana Torres</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US01.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../asistente/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="index.html" id="assistantLink">Registro a Edición</a>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+          <div class="content-with-sidebar">
+              <!-- Main content -->
+              <div class="main-content">
+                  <!-- Registration Type Header -->
+                  <div class="edition-detail-container">
+                      <div class="edition-main">
+                          <div class="event-image" style="background-color: #007bff; color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;">EST</div>
+                          <div class="edition-info">
+                              <h2>Estudiante</h2>
+                              <p><strong>Descripción:</strong> Acceso para estudiantes</p>
+                              <p><strong>Costo:</strong> $1,000</p>
+                              <p><strong>Cupo Total:</strong> 50 personas</p>
+                              <p><strong>Cupo Disponible:</strong> 50 personas</p>
+                              <p><strong>ID:</strong> TR19</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="registration-cta" style="margin-top: 20px;">
+                      <a href="../asistente/registro-edicion-TR19.html" class="btn btn-primary">Registrarme en esta edici&oacute;n</a>
+                  </div>
+              </div>
+
+              <!-- Right Sidebar -->
+              <div class="right-sidebar">
+                  <!-- Event Section -->
+                  <div class="sidebar-card">
+                      <h3 class="sidebar-card-title">Evento</h3>
+                      <div class="sidebar-card-content">
+                          <div class="event-logo">
+                              <span>Conferencia</span>
+                              <span>TECNOLOGÍA</span>
+                          </div>
+                          <a href="consulta-evento-EV01.html" class="event-link">Conferencia de Tecnología</a>
+                      </div>
+                  </div>
+
+                  <!-- Edition Section -->
+                  <div class="sidebar-card">
+                      <h3 class="sidebar-card-title">Edición</h3>
+                      <div class="sidebar-card-content">
+                          <div class="edition-logo">
+                              <span>2026</span>
+                          </div>
+                          <a href="consulta-edicion-EDEV08.html" class="edition-link">Tecnología Punta del Este 2026</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</body>
+</html>

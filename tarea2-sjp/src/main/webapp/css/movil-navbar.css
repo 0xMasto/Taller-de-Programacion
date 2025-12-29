@@ -1,0 +1,319 @@
+/* ============================================
+   Barra de Navegación Móvil - EventosUy
+   Diseño minimalista según Figura 3(a)
+   ============================================ */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    padding-top: 56px; /* Espacio para la navbar fija */
+}
+
+/* ============================================
+   Barra de Navegación Superior (Fija)
+   ============================================ */
+.movil-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   Botón Hamburguesa (Izquierda)
+   ============================================ */
+.hamburger-btn {
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.hamburger-btn:hover {
+    background-color: #f8f8f8;
+}
+
+.hamburger-btn:active {
+    background-color: #e0e0e0;
+}
+
+/* ============================================
+   Título Centrado
+   ============================================ */
+.navbar-title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    letter-spacing: 0.3px;
+    user-select: none;
+}
+
+/* ============================================
+   Ícono de Usuario (Derecha)
+   ============================================ */
+.user-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #333333;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.user-icon:hover {
+    background-color: #f8f8f8;
+}
+
+.user-icon:active {
+    background-color: #e0e0e0;
+}
+
+/* ============================================
+   Menú Overlay (Expandible)
+   ============================================ */
+.menu-overlay {
+    position: fixed;
+    top: 56px; /* Justo debajo de la navbar */
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    z-index: 999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado activo del menú */
+.menu-overlay.active {
+    max-height: 400px;
+}
+
+/* ============================================
+   Lista del Menú
+   ============================================ */
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
+.menu-list a {
+    display: block;
+    padding: 16px 24px;
+    color: #333333;
+    text-decoration: underline;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.menu-list a:hover {
+    background-color: #f8f8f8;
+    color: #1a73e8;
+}
+
+.menu-list a:active {
+    background-color: #e8e8e8;
+}
+
+/* ============================================
+   Sección de Bienvenida
+   ============================================ */
+.welcome-section {
+    background-color: #e3f2fd;
+    padding: 24px 16px;
+    text-align: center;
+    margin: 0;
+}
+
+.welcome-section h1 {
+    font-size: 24px;
+    color: #1565c0;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ============================================
+   Contenido de la Página
+   ============================================ */
+.page-content {
+    padding: 20px 16px;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+    .navbar-title {
+        font-size: 16px;
+    }
+    
+    .hamburger-btn,
+    .user-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .menu-list a {
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+    .movil-navbar {
+        height: 60px;
+        padding: 0 24px;
+    }
+    
+    body {
+        padding-top: 60px;
+    }
+    
+    .menu-overlay {
+        top: 60px;
+    }
+    
+    .navbar-title {
+        font-size: 20px;
+    }
+    
+    .menu-list a {
+        padding: 18px 32px;
+        font-size: 17px;
+    }
+}
+
+/* Desktop - Opcional: menú horizontal */
+@media (min-width: 1024px) {
+    .hamburger-btn {
+        display: none;
+    }
+    
+    .menu-overlay {
+        position: static;
+        max-height: none;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+    }
+    
+    .menu-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .menu-list li {
+        border-bottom: none;
+        border-right: 1px solid #f5f5f5;
+    }
+    
+    .menu-list li:last-child {
+        border-right: none;
+    }
+    
+    .menu-list a {
+        padding: 8px 16px;
+    }
+    
+    .navbar-title {
+        flex: 0;
+        margin-right: auto;
+    }
+}
+
+/* ============================================
+   Accesibilidad
+   ============================================ */
+
+/* Focus visible para navegación por teclado */
+.hamburger-btn:focus,
+.user-icon:focus,
+.menu-list a:focus {
+    outline: 2px solid #1a73e8;
+    outline-offset: 2px;
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+    .movil-navbar {
+        border-bottom: 2px solid #000000;
+    }
+    
+    .menu-overlay {
+        border-bottom: 2px solid #000000;
+    }
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .menu-overlay,
+    .hamburger-btn,
+    .user-icon,
+    .menu-list a {
+        transition: none;
+    }
+}
+
+/* ============================================
+   Clases de Utilidad
+   ============================================ */
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+

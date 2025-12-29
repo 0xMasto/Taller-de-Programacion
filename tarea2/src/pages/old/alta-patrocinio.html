@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Patrocinio - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #4a90e2;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        .benefits-section {
+            margin-top: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .benefit-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .remove-benefit {
+            padding: 8px 12px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-benefit {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <a href="#" onclick="logout()" style="color: #333; text-decoration: underline;">Cerrar sesión</a>
+                <div class="user-avatar" id="userAvatar">M</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html">Alta Evento</a>
+                    <a href="alta-edicion.html">Alta Edición</a>
+                    <a href="alta-institucion.html">Alta Institución</a>
+                    <a href="alta-patrocinio.html" style="font-weight: bold; color: #4a90e2;">Alta Patrocinio</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="events.html?category=tecnologia">Tecnología</a></li>
+                    <li><a href="events.html?category=innovacion">Innovación</a></li>
+                    <li><a href="events.html?category=literatura">Literatura</a></li>
+                    <li><a href="events.html?category=cultura">Cultura</a></li>
+                    <li><a href="events.html?category=musica">Música</a></li>
+                    <li><a href="events.html?category=deporte">Deporte</a></li>
+                    <li><a href="events.html?category=salud">Salud</a></li>
+                    <li><a href="events.html?category=entretenimiento">Entretenimiento</a></li>
+                    <li><a href="events.html?category=agro">Agro</a></li>
+                    <li><a href="events.html?category=negocios">Negocios</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="form-content">
+                <a href="consulta-patrocinio.html" class="back-link">← Ver patrocinios</a>
+                <h2 class="form-title">Alta de Patrocinio</h2>
+                <p style="color: #666; margin-bottom: 30px;">Crear un nuevo patrocinio para eventos</p>
+
+                <form id="sponsorshipForm">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="sponsorName" class="form-label">Nombre del Patrocinador *</label>
+                            <input type="text" id="sponsorName" name="sponsorName" class="form-control" 
+                                   placeholder="Ej: TechCorp Solutions" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sponsorshipType" class="form-label">Tipo de Patrocinio *</label>
+                            <select id="sponsorshipType" name="sponsorshipType" class="form-control" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="corporativo">Corporativo</option>
+                                <option value="premium">Premium</option>
+                                <option value="active">Activo</option>
+                                <option value="academico">Académico</option>
+                                <option value="gubernamental">Gubernamental</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="associatedEvent" class="form-label">Evento Asociado *</label>
+                        <select id="associatedEvent" name="associatedEvent" class="form-control" required>
+                            <option value="">Seleccionar evento</option>
+                            <option value="1">TechConf Uruguay 2025</option>
+                            <option value="2">Montevideo Comics 2025</option>
+                            <option value="3">Montevideo Rock 2025</option>
+                            <option value="4">Feria del Libro 2025</option>
+                            <option value="5">Startup Weekend 2025</option>
+                            <option value="6">Maratón de Montevideo 2025</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sponsorDescription" class="form-label">Descripción del Patrocinio *</label>
+                        <textarea id="sponsorDescription" name="sponsorDescription" class="form-control" rows="4"
+                                  placeholder="Describe el patrocinio y su propósito..." required></textarea>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">Email de Contacto *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" class="form-control" 
+                                   placeholder="sponsor@empresa.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sponsorWebsite" class="form-label">Sitio Web</label>
+                            <input type="url" id="sponsorWebsite" name="sponsorWebsite" class="form-control" 
+                                   placeholder="https://www.empresa.com">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="discountPercentage" class="form-label">Porcentaje de Descuento *</label>
+                            <input type="number" id="discountPercentage" name="discountPercentage" class="form-control" 
+                                   placeholder="20" min="0" max="100" required>
+                            <small style="color: #666;">Porcentaje de descuento para participantes (0-100%)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="promoCode" class="form-label">Código Promocional *</label>
+                            <input type="text" id="promoCode" name="promoCode" class="form-control" 
+                                   placeholder="SPONSOR2025" required>
+                            <small style="color: #666;">Código que usarán los participantes</small>
+                        </div>
+                    </div>
+
+                    <!-- Benefits Section -->
+                    <div class="benefits-section">
+                        <label class="form-label">Beneficios Incluidos *</label>
+                        <div id="benefitsList">
+                            <div class="benefit-item">
+                                <input type="text" class="benefit-input" name="benefits[]" 
+                                       placeholder="Ej: Logo en materiales promocionales" required>
+                                <button type="button" class="remove-benefit" onclick="removeBenefit(this)">Eliminar</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-benefit" onclick="addBenefit()">+ Agregar Beneficio</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sponsorLogo" class="form-label">Logo del Patrocinador</label>
+                        <input type="file" id="sponsorLogo" name="sponsorLogo" class="form-control" 
+                               accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Crear Patrocinio</button>
+                        <a href="consulta-patrocinio.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+
+                    <div id="sponsorshipError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="sponsorshipSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        // Check user authentication
+        function checkUserAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                document.getElementById('guestAuth').style.display = 'none';
+                document.getElementById('userAuth').style.display = 'flex';
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                // Check if user is organizador
+                if (currentUser.type === 'organizador') {
+                    document.getElementById('profileSection').style.display = 'block';
+                    
+                    // Update profile link
+                    const profileLink = document.getElementById('profileLink');
+                    profileLink.href = `user-profile.html?nickname=${currentUser.identifier.split('@')[0]}`;
+                } else {
+                    // Redirect asistentes back to main page
+                    alert('Esta funcionalidad está disponible solo para organizadores.');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                // Redirect non-authenticated users to login
+                alert('Debe iniciar sesión como organizador para acceder a esta página.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
+                localStorage.removeItem('currentUser');
+                alert('Sesión cerrada correctamente');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Add benefit function
+        function addBenefit() {
+            const benefitsList = document.getElementById('benefitsList');
+            const newBenefit = document.createElement('div');
+            newBenefit.className = 'benefit-item';
+            newBenefit.innerHTML = `
+                <input type="text" class="benefit-input" name="benefits[]" 
+                       placeholder="Ej: Acceso exclusivo a networking" required>
+                <button type="button" class="remove-benefit" onclick="removeBenefit(this)">Eliminar</button>
+            `;
+            benefitsList.appendChild(newBenefit);
+        }
+
+        // Remove benefit function
+        function removeBenefit(button) {
+            const benefitsList = document.getElementById('benefitsList');
+            if (benefitsList.children.length > 1) {
+                button.parentElement.remove();
+            } else {
+                alert('Debe incluir al menos un beneficio.');
+            }
+        }
+
+        // Form submission
+        document.getElementById('sponsorshipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Procesando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.getElementById('sponsorshipError').style.display = 'none';
+            document.getElementById('sponsorshipSuccess').style.display = 'none';
+            
+            const formData = new FormData(this);
+            const sponsorName = formData.get('sponsorName').trim();
+            const sponsorshipType = formData.get('sponsorshipType');
+            const associatedEvent = formData.get('associatedEvent');
+            const sponsorDescription = formData.get('sponsorDescription').trim();
+            const contactEmail = formData.get('contactEmail').trim();
+            const discountPercentage = formData.get('discountPercentage');
+            const promoCode = formData.get('promoCode').trim();
+            
+            // Get benefits
+            const benefitInputs = document.querySelectorAll('.benefit-input');
+            const benefits = Array.from(benefitInputs).map(input => input.value.trim()).filter(benefit => benefit);
+            
+            // Basic validation
+            if (!sponsorName || !sponsorshipType || !associatedEvent || !sponsorDescription || 
+                !contactEmail || !discountPercentage || !promoCode || benefits.length === 0) {
+                document.getElementById('sponsorshipError').textContent = 'Todos los campos marcados con * son obligatorios, incluyendo al menos un beneficio';
+                document.getElementById('sponsorshipError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Validate discount percentage
+            const discount = parseInt(discountPercentage);
+            if (discount < 0 || discount > 100) {
+                document.getElementById('sponsorshipError').textContent = 'El porcentaje de descuento debe estar entre 0 y 100';
+                document.getElementById('sponsorshipError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Simulate sponsorship creation
+            setTimeout(() => {
+                document.getElementById('sponsorshipSuccess').textContent = `¡Patrocinio "${sponsorName}" creado exitosamente con código "${promoCode}"!`;
+                document.getElementById('sponsorshipSuccess').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Reset benefits list to one item
+                const benefitsList = document.getElementById('benefitsList');
+                benefitsList.innerHTML = `
+                    <div class="benefit-item">
+                        <input type="text" class="benefit-input" name="benefits[]" 
+                               placeholder="Ej: Logo en materiales promocionales" required>
+                        <button type="button" class="remove-benefit" onclick="removeBenefit(this)">Eliminar</button>
+                    </div>
+                `;
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'consulta-patrocinio.html';
+                }, 3000);
+            }, 1000);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserAuth();
+        });
+    </script>
+</body>
+</html>

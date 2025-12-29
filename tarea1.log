@@ -1,0 +1,41 @@
+Web Services publicados en: http://0.0.0.0:9128/webservices
+WSDL disponible en: http://0.0.0.0:9128/webservices?wsdl
+=== INICIANDO CARGA DE CSV ===
+Carpeta CSV: datos-prueba-tarea3-csv-v1_0
+Working directory: /home/joao/tpgr01
+===============================
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Categorias.csv (12 registros de 13 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Instituciones.csv (5 registros de 6 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Usuarios.csv (15 registros de 16 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Usuarios-Asistentes.csv (10 registros de 11 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Usuarios-Organizadores.csv (5 registros de 6 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Eventos.csv (8 registros de 9 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025EdicionesEventos.csv (12 registros de 13 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025TipoRegistro.csv (29 registros de 30 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Patrocinios.csv (4 registros de 5 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025Registros.csv (15 registros de 16 líneas)
+✓ Cargado: datos-prueba-tarea3-csv-v1_0/2025SeguidoresSeguidos.csv (7 registros de 8 líneas)
+DEBUG: Creating Edicion 'Web Summit 2026' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Web Summit 2026' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Mobile World Congress 2025' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Mobile World Congress 2025' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Tecnología Punta del Este 2026' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Tecnología Punta del Este 2026' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Montevideo Comics 2024' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Montevideo Comics 2024' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Maratón de Montevideo 2022' with estado parameter: 'Rechazada'
+DEBUG: Edicion 'Maratón de Montevideo 2022' estado field set to: RECHAZADA
+DEBUG: Creating Edicion 'Expointer Uruguay 2025' with estado parameter: 'Ingresada'
+DEBUG: Edicion 'Expointer Uruguay 2025' estado field set to: INGRESADA
+DEBUG: Creating Edicion 'Montevideo Comics 2025' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Montevideo Comics 2025' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Montevideo Rock 2025' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Montevideo Rock 2025' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Descubre la Magia de Machu Picchu' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Descubre la Magia de Machu Picchu' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Montevideo Fashion Week 2026' with estado parameter: 'Ingresada'
+DEBUG: Edicion 'Montevideo Fashion Week 2026' estado field set to: INGRESADA
+DEBUG: Creating Edicion 'Maratón de Montevideo 2024' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Maratón de Montevideo 2024' estado field set to: ACEPTADA
+DEBUG: Creating Edicion 'Maratón de Montevideo 2025' with estado parameter: 'Aceptada'
+DEBUG: Edicion 'Maratón de Montevideo 2025' estado field set to: ACEPTADA

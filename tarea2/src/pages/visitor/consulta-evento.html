@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferencia de Tecnología - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../visitor/index.html" class="logo">Eventos.uy</a>
+        </div>
+
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div id="guestAuth">
+                <a href="iniciar-sesion.html">Iniciar Sesión</a> / 
+                <a href="alta-usuario.html">Registrarse</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Event Detail -->
+            <div class="event-detail-container">
+                <div class="event-main">
+                    <div class="event-image">Conferencia<br>Tecnología</div>
+                    <div class="event-info">
+                        <h2>Conferencia de Tecnología</h2>
+                        <p><strong>Descripción:</strong> Evento sobre innovación tecnológica</p>
+                        <p><strong>Sigla:</strong> CONFTEC</p>
+                        <p><strong>Categorías:</strong> Tecnología, Innovación</p>
+                        <p><strong>Fecha Alta:</strong> 10/01/2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editions Sidebar -->
+        <div class="editions-sidebar">
+            <div class="editions-section">
+                <div class="editions-header">Ediciones</div>
+                <div class="editions-list">
+                    <!-- Edition 1: EDEV08 - Aceptada -->
+                    <a href="consulta-edicion.html" class="edition-link">
+                        <div class="edition-item">
+                            <div class="edition-image">Tecnología<br>2026</div>
+                            <div class="edition-content">
+                                <div class="edition-name">Tecnología Punta del Este 2026</div>
+                                <small style="color: #666;">
+                                    Punta del Este, Uruguay | 06/04/2026 - 10/04/2026 | Estado: Aceptada
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Edition 2: EDEV10 - Aceptada -->
+                    <a href="consulta-edicion.html" class="edition-link">
+                        <div class="edition-item">
+                            <div class="edition-image">Web<br>Summit</div>
+                            <div class="edition-content">
+                                <div class="edition-name">Web Summit 2026</div>
+                                <small style="color: #666;">
+                                    Lisboa, Portugal | 13/01/2026 - 01/02/2026 | Estado: Aceptada
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Edition 3: EDEV09 - Ingresada (Hidden for visitors) -->
+                    <!-- Only showing Aceptada editions to visitors -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

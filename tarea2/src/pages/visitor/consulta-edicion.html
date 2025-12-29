@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Summit 2026 - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../visitor/index.html" class="logo">Eventos.uy</a>
+        </div>
+
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div id="guestAuth">
+                <a href="iniciar-sesion.html">Iniciar Sesión</a> / 
+                <a href="alta-usuario.html">Registrarse</a>
+            </div>
+        </div>
+    </header>
+    <div class="main-layout">
+        <!-- Sidebar izquierda -->
+        <div class="sidebar">
+            <!-- Categorías -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Usuarios -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="content-area">
+            <!-- Detalle de la edición -->
+            <div class="edition-detail-container">
+                <div class="edition-main">
+                    <div class="event-image" style="background-color: #333;">Web<br>Summit</div>
+                    <div class="edition-info">
+                        <h2>Web Summit 2026</h2>
+                        <p><strong>Sigla:</strong> WS26</p>
+                        <p><strong>Ciudad:</strong> Lisboa</p>
+                        <p><strong>País:</strong> Portugal</p>
+                        <p><strong>Fecha Inicio:</strong> 13/01/2026</p>
+                        <p><strong>Fecha Fin:</strong> 01/02/2026</p>
+                        <p><strong>Organizador:</strong> US05 (no disponible)</p>
+                        <p><strong>Estado:</strong> <span class="status-badge status-aceptada">Aceptada</span></p>
+                        <p><strong>Fecha Alta:</strong> 04/06/2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar derecha -->
+        <div class="editions-sidebar">
+            <!-- Tipos de registro -->
+            <div class="editions-section">
+                <div class="editions-header">Evento:</div>
+                <div style="padding: 15px; text-align: center; color: #666;">
+                    <p><em><a href="consulta-evento.html">Conferencia de Tecnología</a></em></p>
+                </div>
+            </div>
+            <div class="editions-section">
+                <div class="editions-header">Tipos de Registro</div>
+                <div class="editions-list">
+                    <div class="edition-item" style="padding: 10px;">
+                        <div class="edition-image" style="background-color: #666; color: white; font-size: 8px; width: 40px; height: 30px;">EST</div>
+                        <div class="edition-content">
+                            <div class="edition-name" style="font-size: 12px;">Estudiante</div>
+                            <small style="color: #666; font-size: 11px;">
+                                $300 | Cupo: 1
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patrocinios -->
+            <div class="editions-section">
+                <div class="editions-header">Patrocinios</div>
+                <div style="padding: 15px; text-align: center; color: #666;">
+                    <p><em>No hay patrocinios para esta edición</em></p>
+                </div>
+            </div>
+        </div>
+    </div> <!-- cierre de .main-layout -->
+</body>
+</html>

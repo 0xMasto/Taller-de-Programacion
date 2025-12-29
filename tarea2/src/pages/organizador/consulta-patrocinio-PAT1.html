@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrocinio: Facultad de Ingeniería - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <div class="header-left">
+      <a href="../organizador/index.html" class="logo">Eventos.uy</a>
+    </div>
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US04.jpeg" alt="MisEventos" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">ME</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">MisEventos</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US04.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../organizador/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="consulta-usuario-US04.html" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html" id="organizerLink1">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3">Alta Institución</a>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Sponsorship Header -->
+            <div class="edition-detail-container">
+                <div class="edition-main">
+                    <div class="event-image" style="background-color: #FFD700; color: black; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;">ORO</div>
+                    <div class="edition-info">
+                        <h2>Patrocinio Oro - Facultad de Ingeniería</h2>
+                        <p><strong>Edición:</strong> <a href="consulta-edicion-EDEV08.html">Tecnología Punta del Este 2026</a></p>
+                        <p><strong>Evento:</strong> <a href="consulta-evento-EV01.html">Conferencia de Tecnología</a></p>
+                        <p><strong>Institución:</strong> Facultad de Ingeniería</p>
+                        <p><strong>Website:</strong> <a href="https://www.fing.edu.uy" target="_blank">https://www.fing.edu.uy</a></p>
+                        <p><strong>Nivel:</strong> Oro</p>
+                        <p><strong>Monto:</strong> $20,000</p>
+                        <p><strong>Fecha:</strong> 21/08/2025</p>
+                        <p><strong>ID:</strong> PAT1</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sponsorship Benefits -->
+            <div class="registration-section">
+                <div class="registration-header">Beneficios del Patrocinio</div>
+                <div class="registration-card">
+                    <div class="registration-header">
+                        <div class="registration-title">Código Promocional: TECHUDELAR</div>
+                        <div class="registration-date">Activo</div>
+                    </div>
+                    <div class="registration-info">
+                        <div>
+                            <p><strong>Tipo de Registro:</strong> TR19 (Estudiante)</p>
+                            <p><strong>Cupos Gratuitos:</strong> 4 personas</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-confirmado">Activo</span></p>
+                        </div>
+                        <div>
+                            <p><strong>Descuento:</strong> 100% (Gratuito)</p>
+                            <p><strong>Válido hasta:</strong> Agotamiento de cupos</p>
+                            <p><strong>Código:</strong> TECHUDELAR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Actions -->
+            <div style="text-align: center; margin-top: 30px;">
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button class="btn btn-primary">Editar Patrocinio</button>
+                    <button class="btn btn-danger">Eliminar Patrocinio</button>
+                    <a href="consulta-edicion-EDEV08.html" class="btn btn-secondary">Ver Edición</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="editions-sidebar">
+            <div class="editions-section">
+                <div class="editions-header">Detalles</div>
+                <div style="padding: 15px; text-align: center;">
+                    <div style="margin-bottom: 10px;">
+                        <strong style="font-size: 18px; color: #FFD700;">ORO</strong><br>
+                        <small style="color: #666;">Nivel de Patrocinio</small>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong style="font-size: 18px; color: #28a745;">$20,000</strong><br>
+                        <small style="color: #666;">Monto</small>
+                    </div>
+                    <div>
+                        <strong style="font-size: 18px; color: #007bff;">4</strong><br>
+                        <small style="color: #666;">Cupos Gratuitos</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editions-section">
+                <div class="editions-header">Institución</div>
+                <div style="padding: 15px; text-align: center;">
+                    <div style="margin-bottom: 15px;">
+                        <div style="width: 60px; height: 60px; margin: 0 auto; background-color: #007bff; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: bold;">
+                            FING
+                        </div>
+                    </div>
+                    <p style="margin: 0; font-size: 12px;"><strong>Facultad de Ingeniería</strong></p>
+                    <p style="margin: 5px 0 10px 0; font-size: 11px; color: #666;">Universidad de la República</p>
+                    <a href="https://www.fing.edu.uy" target="_blank" class="btn btn-secondary" style="width: 100%; font-size: 10px; padding: 4px;">Visitar Web</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Tipo de Registro - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../asistente/index.html" class="logo">Eventos.uy</a>
+    </div>
+
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">AT</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">Ana Torres</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US01.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../asistente/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Si no hay usuario logueado, podés mostrar: 
+      <div id="guestAuth">
+        <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+      </div>
+      -->
+    </div>
+  </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+        <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="index.html" id="assistantLink">Registro a Edición</a>
+                </div>
+            </div>
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <div class="page-content">
+                <h1 class="page-title">Consulta de Tipo de Registro</h1>
+                
+                <!-- Navigation Path -->
+                <div class="breadcrumb">
+                    Selecciona: 
+                    <a href="consulta-evento.html">Evento</a> → 
+                    <a href="consulta-edicion.html">Edición "Aprobada"</a> → 
+                    Tipo de Registro
+                </div>
+                
+                <!-- Selection Form -->
+                <div class="grid-3" style="margin: 20px 0;">
+                    <div class="form-group">
+                        <label class="form-label">Evento:</label>
+                        <select class="form-control">
+                            <option value="EV01" selected>Conferencia de Tecnología</option>
+                            <option value="EV04">Maratón de Montevideo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Edición (Solo Aprobadas):</label>
+                        <select class="form-control">
+                            <option value="EDEV03" selected>TechConf 2024</option>
+                            <option value="EDEV04">TechConf 2023</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Registro:</label>
+                        <select class="form-control">
+                            <option value="TR01" selected>Estudiante</option>
+                            <option value="TR02">Profesional</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Registration Type Detail -->
+                <div class="registration-type-card" style="margin-top: 30px; border: 2px solid #28a745; background-color: #f8fff8;">
+                    <div class="registration-type-header">
+                        <div class="registration-type-name">Estudiante ✅</div>
+                        <div class="registration-type-price">$500</div>
+                    </div>
+                    <div class="registration-type-info">
+                        <p><strong>Descripción:</strong> Acceso completo al evento para estudiantes universitarios. Incluye todas las conferencias, talleres y material digital.</p>
+                        <p><strong>Edición:</strong> TechConf 2024 - Conferencia de Tecnología</p>
+                        <p><strong>Cupo total:</strong> 100 personas</p>
+                        <p><strong>Cupo ocupado:</strong> 27 personas</p>
+                        <p><strong>Cupo disponible:</strong> 73 personas</p>
+                        <p><strong>Organizador:</strong> <a href="consulta-usuario.html">MisEventos</a></p>
+                    </div>
+                    
+                    <div class="registration-type-features">
+                        <span class="feature-badge">Acceso completo</span>
+                        <span class="feature-badge">Material digital</span>
+                        <span class="feature-badge">Certificado</span>
+                        <span class="feature-badge">Coffee breaks</span>
+                        <span class="feature-badge">Kit de bienvenida</span>
+                    </div>
+
+                    <!-- My Registration Status -->
+                    <div class="alert alert-success" style="margin-top: 15px;">
+                        <strong>✅ Ya estás registrada en este tipo</strong><br>
+                        Registro confirmado el 20 de Enero 2024 con código FING2024 (Gratuito)
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <a href="consulta-edicion.html" class="btn btn-primary">Ver Edición Completa</a>
+                        <a href="consulta-registro.html" class="btn btn-secondary">Ver Mis Registros</a>
+                        <a href="index.html" class="btn btn-info">Explorar Más Eventos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

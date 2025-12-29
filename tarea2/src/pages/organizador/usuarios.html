@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../organizador/index.html" class="logo">Eventos.uy</a>
+    </div>
+
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US04.jpeg" alt="MisEventos" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">ME</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">MisEventos</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US04.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../organizador/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Si no hay usuario logueado mostrarías:
+      <div id="guestAuth">
+        <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+      </div>
+      -->
+    </div>
+  </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="consulta-usuario-US04.html" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html" id="organizerLink1">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3">Alta Institución</a>
+                </div>
+            </div>
+            
+         
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Events Link -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                    <a href="index.html" style="color: #333; text-decoration: underline;">Eventos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-type="all">Todos</button>
+                <button class="filter-tab" data-type="organizador">Organizadores</button>
+                <button class="filter-tab" data-type="asistente">Asistentes</button>
+            </div>
+
+            <!-- Users List -->
+            <ul class="users-list">
+                <!-- User 1: Ana Torres -->
+                <a href="consulta-usuario-US01.html" style="color: #333; text-decoration: none;">
+                    <li class="user-card" data-user-type="asistente">
+                        <div class="user-image">
+                            <img src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <div class="user-content">
+                            <h3>Ana Torres</h3>
+                            <p><strong>@atorres</strong> • <span class="user-type-badge badge-asistente">Asistente</span></p>
+                            <p>Estudiante - Facultad de Ingeniería</p>
+                            <p><strong>Email:</strong> atorres@gmail.com</p>
+                        </div>
+                    </li>
+                </a>
+
+                <!-- User 2: MisEventos -->
+                <a href="consulta-usuario-US04.html" style="color: #333; text-decoration: none;">
+                    <li class="user-card" data-user-type="organizador">
+                        <div class="user-image">
+                            <img src="../../../imagens/IMG-US04.jpeg" alt="MisEventos" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <div class="user-content">
+                            <h3>MisEventos</h3>
+                            <p><strong>@miseventos</strong> • <span class="user-type-badge badge-organizador">Organizador</span></p>
+                            <p>Empresa de organización de eventos.</p>
+                            <p><strong>Email:</strong> contacto@miseventos.com</p>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    
+
+</body>
+</html>

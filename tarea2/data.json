@@ -1,0 +1,268 @@
+{
+  "metadata": {
+    "source": "TProg-DatosPruebaT2-p1-2025-v1_0.pdf",
+    "version": "1.0",
+    "date_text": "Setiembre 2025",
+    "schema_version": "1.0.0"
+  },
+  "users": [
+    {
+      "id": "US01",
+      "type": "A",
+      "nickname": "atorres",
+      "name": "Ana",
+      "email": "atorres@gmail.com",
+      "password": "123.torres",
+      "image": "IMG-US01.jpg",
+      "assistant_extra": {
+        "last_name": "Torres",
+        "birth_date_text": "12/05/1990",
+        "birth_date": "1990-05-12",
+        "institution_id": "INS01"
+      }
+    },
+    {
+      "id": "US04",
+      "type": "O",
+      "nickname": "miseventos",
+      "name": "MisEventos",
+      "email": "contacto@miseventos.com",
+      "password": "22miseventos",
+      "image": "IMG-US04.jpeg",
+      "organizer_extra": {
+        "description": "Empresa de organización de eventos.",
+        "website": "https://miseventos.com"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "CA01",
+      "name": "Tecnología"
+    },
+    {
+      "id": "CA02",
+      "name": "Innovación"
+    },
+    {
+      "id": "CA06",
+      "name": "Deporte"
+    },
+    {
+      "id": "CA07",
+      "name": "Salud"
+    }
+  ],
+  "events": [
+    {
+      "id": "EV01",
+      "name": "Conferencia de Tecnología",
+      "description": "Evento sobre innovación tecnológica",
+      "acronym": "CONFTEC",
+      "created_date_text": "10/01/2025",
+      "created_date": "2025-01-10",
+      "category_ids": [
+        "CA01",
+        "CA02"
+      ],
+      "image": null
+    },
+    {
+      "id": "EV04",
+      "name": "Maratón de Montevideo",
+      "description": "Competencia deportiva anual en la capital",
+      "acronym": "MARATON",
+      "created_date_text": "01/01/2022",
+      "created_date": "2022-01-01",
+      "category_ids": [
+        "CA06",
+        "CA07"
+      ],
+      "image": "IMG-EV04.png"
+    }
+  ],
+  "event_editions": [
+    {
+      "id": "EDEV03",
+      "event_id": "EV04",
+      "organizer_id": "US06",
+      "name": "Maratón de Montevideo 2024",
+      "acronym": "MARATON24",
+      "status": "Aceptada",
+      "city": "Montevideo",
+      "country": "Uruguay",
+      "start_date_text": "14/09/2024",
+      "start_date": "2024-09-14",
+      "end_date_text": "14/09/2024",
+      "end_date": "2024-09-14",
+      "created_date_text": "21/04/2024",
+      "created_date": "2024-04-21",
+      "image": "IMG-EDEV03.jpeg"
+    },
+    {
+      "id": "EDEV04",
+      "event_id": "EV04",
+      "organizer_id": "US06",
+      "name": "Maratón de Montevideo 2022",
+      "acronym": "MARATON22",
+      "status": "Rechazada",
+      "city": "Montevideo",
+      "country": "Uruguay",
+      "start_date_text": "14/09/2022",
+      "start_date": "2022-09-14",
+      "end_date_text": "14/09/2022",
+      "end_date": "2022-09-14",
+      "created_date_text": "21/05/2022",
+      "created_date": "2022-05-21",
+      "image": "IMG-EDEV04.jpeg"
+    },
+    {
+      "id": "EDEV08",
+      "event_id": "EV01",
+      "organizer_id": "US10",
+      "name": "Tecnología Punta del Este 2026",
+      "acronym": "CONFTECH26",
+      "status": "Aceptada",
+      "city": "Punta del Este",
+      "country": "Uruguay",
+      "start_date_text": "06/04/2026",
+      "start_date": "2026-04-06",
+      "end_date_text": "10/04/2026",
+      "end_date": "2026-04-10",
+      "created_date_text": "01/08/2025",
+      "created_date": "2025-08-01",
+      "image": null
+    },
+    {
+      "id": "EDEV09",
+      "event_id": "EV01",
+      "organizer_id": "US05",
+      "name": "Mobile World Congress 2025",
+      "acronym": "MWC",
+      "status": "Ingresada",
+      "city": "Barcelona",
+      "country": "España",
+      "start_date_text": "12/12/2025",
+      "start_date": "2025-12-12",
+      "end_date_text": "15/12/2025",
+      "end_date": "2025-12-15",
+      "created_date_text": "21/08/2025",
+      "created_date": "2025-08-21",
+      "image": "IMG-EDEV09.png"
+    },
+    {
+      "id": "EDEV10",
+      "event_id": "EV01",
+      "organizer_id": "US05",
+      "name": "Web Summit 2026",
+      "acronym": "WS26",
+      "status": "Aceptada",
+      "city": "Lisboa",
+      "country": "Portugal",
+      "start_date_text": "13/01/2026",
+      "start_date": "2026-01-13",
+      "end_date_text": "01/02/2026",
+      "end_date": "2026-02-01",
+      "created_date_text": "04/06/2025",
+      "created_date": "2025-06-04",
+      "image": null
+    }
+  ],
+  "registration_types": [
+    {
+      "id": "TR07",
+      "event_edition_id": "EDEV03",
+      "name": "Corredor 21K",
+      "description": "Inscripción a la media maratón",
+      "cost": 500,
+      "quota": 500
+    },
+    {
+      "id": "TR19",
+      "event_edition_id": "EDEV08",
+      "name": "Estudiante",
+      "description": "Acceso para estudiantes",
+      "cost": 1000,
+      "quota": 50
+    },
+    {
+      "id": "TR20",
+      "event_edition_id": "EDEV09",
+      "name": "Full",
+      "description": "Acceso ilimitado + Cena de gala",
+      "cost": 750,
+      "quota": 550
+    },
+    {
+      "id": "TR25",
+      "event_edition_id": "EDEV10",
+      "name": "Estudiante",
+      "description": "Acceso para estudiantes",
+      "cost": 300,
+      "quota": 1
+    }
+  ],
+  "institutions": [
+    {
+      "id": "INS01",
+      "name": "Facultad de Ingeniería",
+      "description": "Facultad de Ingeniería de la Universidad de la República",
+      "website": "https://www.fing.edu.uy"
+    }
+  ],
+  "sponsorships": [
+    {
+      "id": "PAT1",
+      "event_edition_id": "EDEV08",
+      "institution_id": "INS01",
+      "level": "Oro",
+      "type": "TR19",
+      "amount": 20000,
+      "date_text": "21/08/2025",
+      "date": "2025-08-21",
+      "quantity": 4,
+      "code": "TECHUDELAR"
+    }
+  ],
+  "registrations": [
+    {
+      "id": "RE02",
+      "user_id": "US01",
+      "event_edition_id": "EDEV03",
+      "registration_type_id": "TR07",
+      "date_text": "30/07/2024",
+      "date": "2024-07-30",
+      "cost": 500
+    },
+    {
+      "id": "RE03",
+      "user_id": "US01",
+      "event_edition_id": "EDEV10",
+      "registration_type_id": "TR25",
+      "date_text": "21/08/2025",
+      "date": "2025-08-21",
+      "cost": 300
+    }
+  ],
+  "assets": [
+    "IMG-US01.jpg",
+    "IMG-US04.jpeg",
+    "IMG-EV04.png",
+    "IMG-EDEV03.jpeg",
+    "IMG-EDEV04.jpeg",
+    "IMG-EDEV09.png"
+  ],
+  "validation": {
+    "note": "Some references in the PDF point to users that are not defined in the 'users' section.",
+    "missing_user_ids": [
+      "US05",
+      "US06",
+      "US10"
+    ],
+    "unresolved_image_placeholders": [
+      "EV01 has no image",
+      "EDEV08 has no image",
+      "EDEV10 has no image"
+    ]
+  }
+}

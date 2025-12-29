@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Summit 2026 - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../asistente/index.html" class="logo">Eventos.uy</a>
+    </div>
+
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">AT</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">Ana Torres</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US01.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../asistente/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Si no hay usuario logueado, podés mostrar: 
+      <div id="guestAuth">
+        <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+      </div>
+      -->
+    </div>
+  </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+           <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="index.html" id="assistantLink">Registro a Edición</a>
+                </div>
+            </div>
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- My Registration Alert -->
+            <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 4px;">
+                <strong>Estás registrada en esta edición</strong><br>
+                Registro confirmado el 21 de Agosto 2025 - Tipo: Estudiante ($300)
+            </div>
+
+            <!-- Edition Detail -->
+            <div class="edition-detail-container">
+                <div class="edition-main">
+                    <div class="event-image" style="background-color: #333;">Web<br>Summit</div>
+                    <div class="edition-info">
+                        <h2>Web Summit 2026</h2>
+                        <p><strong>Evento:</strong> <a href="consulta-evento.html">Conferencia de Tecnología</a></p>
+                        <p><strong>Sigla:</strong> WS26</p>
+                        <p><strong>Ciudad:</strong> Lisboa</p>
+                        <p><strong>País:</strong> Portugal</p>
+                        <p><strong>Fecha Inicio:</strong> 13/01/2026</p>
+                        <p><strong>Fecha Fin:</strong> 01/02/2026</p>
+                        <p><strong>Organizador:</strong> US05 (no disponible)</p>
+                        <p><strong>Estado:</strong> <span class="status-badge status-aceptada">Aceptada</span></p>
+                        <p><strong>Fecha Alta:</strong> 04/06/2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Registration Details -->
+            <div class="registration-section">
+                <div class="registration-header">Mi Registro</div>
+                <div class="registration-card">
+                    <div class="registration-header">
+                        <div class="registration-title">Ana Torres - Registro Estudiante</div>
+                        <div class="registration-date">21 Ago 2025</div>
+                    </div>
+                    <div class="registration-info">
+                        <div>
+                            <p><strong>Tipo:</strong> Estudiante</p>
+                            <p><strong>Costo:</strong> $300</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-confirmado">Confirmado</span></p>
+                        </div>
+                        <div>
+                            <p><strong>ID Registro:</strong> RE03</p>
+                            <p><strong>Email:</strong> atorres@gmail.com</p>
+                            <p><strong>Institución:</strong> Facultad de Ingeniería</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration Types -->
+            <div class="registration-section">
+                <div class="registration-header">Tipos de Registro</div>
+                <div class="registration-types">
+                    <div class="registration-type-card">
+                        <div class="registration-type-header">
+                            <div class="registration-type-name">Estudiante</div>
+                            <div class="registration-type-price">$300</div>
+                        </div>
+                        <div class="registration-type-info">
+                            <p>Acceso para estudiantes</p>
+                            <p><strong>Cupo:</strong> 1 persona</p>
+                            <p><strong>Registrados:</strong> 1 (Tú)</p>
+                            <p><strong>Disponible:</strong> 0 cupos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="editions-sidebar">
+            <!-- Registration Types Section -->
+            <div class="editions-section">
+                <div class="editions-header">Tipos de Registro</div>
+                <div class="editions-list">
+                    <div class="edition-item" style="padding: 8px;">
+                        <div class="edition-image" style="background-color: #666; color: white; font-size: 8px; width: 35px; height: 25px;">EST</div>
+                        <div class="edition-content">
+                            <div class="edition-name" style="font-size: 11px;">Estudiante</div>
+                            <small style="color: #666; font-size: 10px;">
+                                $300 | Tu registro
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sponsorships Section -->
+            <div class="editions-section">
+                <div class="editions-header">Patrocinios</div>
+                <div style="padding: 15px; text-align: center; color: #666;">
+                    <p><em>No hay patrocinios para esta edición</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

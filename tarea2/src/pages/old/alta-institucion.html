@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Institución - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #4a90e2;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <a href="#" onclick="logout()" style="color: #333; text-decoration: underline;">Cerrar sesión</a>
+                <div class="user-avatar" id="userAvatar">M</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html">Alta Evento</a>
+                    <a href="alta-edicion.html">Alta Edición</a>
+                    <a href="alta-institucion.html" style="font-weight: bold; color: #4a90e2;">Alta Institución</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="events.html?category=tecnologia">Tecnología</a></li>
+                    <li><a href="events.html?category=innovacion">Innovación</a></li>
+                    <li><a href="events.html?category=literatura">Literatura</a></li>
+                    <li><a href="events.html?category=cultura">Cultura</a></li>
+                    <li><a href="events.html?category=musica">Música</a></li>
+                    <li><a href="events.html?category=deporte">Deporte</a></li>
+                    <li><a href="events.html?category=salud">Salud</a></li>
+                    <li><a href="events.html?category=entretenimiento">Entretenimiento</a></li>
+                    <li><a href="events.html?category=agro">Agro</a></li>
+                    <li><a href="events.html?category=negocios">Negocios</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="form-content">
+                <a href="../index.html" class="back-link">← Volver al inicio</a>
+                <h2 class="form-title">Alta Institución</h2>
+                <p style="color: #666; margin-bottom: 30px;">Registrar una nueva institución en el sistema</p>
+
+                <form id="institutionForm">
+                    <div class="form-group">
+                        <label for="institutionName" class="form-label">Nombre de la Institución *</label>
+                        <input type="text" id="institutionName" name="institutionName" class="form-control" 
+                               placeholder="Ej: Universidad de la República" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institutionDescription" class="form-label">Descripción *</label>
+                        <textarea id="institutionDescription" name="institutionDescription" class="form-control" rows="4"
+                                  placeholder="Describe la institución..." required></textarea>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="institutionWebsite" class="form-label">Sitio Web</label>
+                            <input type="url" id="institutionWebsite" name="institutionWebsite" class="form-control" 
+                                   placeholder="https://www.institucion.edu.uy">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="institutionEmail" class="form-label">Email de Contacto</label>
+                            <input type="email" id="institutionEmail" name="institutionEmail" class="form-control" 
+                                   placeholder="contacto@institucion.edu.uy">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="institutionPhone" class="form-label">Teléfono</label>
+                            <input type="tel" id="institutionPhone" name="institutionPhone" class="form-control" 
+                                   placeholder="Ej: +598 2708 1111">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="institutionAddress" class="form-label">Dirección</label>
+                            <input type="text" id="institutionAddress" name="institutionAddress" class="form-control" 
+                                   placeholder="Ej: Av. 18 de Julio 1968, Montevideo">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institutionType" class="form-label">Tipo de Institución *</label>
+                        <select id="institutionType" name="institutionType" class="form-control" required>
+                            <option value="">Seleccionar tipo</option>
+                            <option value="universidad">Universidad</option>
+                            <option value="instituto">Instituto</option>
+                            <option value="colegio">Colegio</option>
+                            <option value="empresa">Empresa</option>
+                            <option value="gobierno">Organismo Gubernamental</option>
+                            <option value="ong">Organización sin fines de lucro</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institutionLogo" class="form-label">Logo de la Institución</label>
+                        <input type="file" id="institutionLogo" name="institutionLogo" class="form-control" 
+                               accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Crear Institución</button>
+                        <a href="../index.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+
+                    <div id="institutionError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="institutionSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        // Check user authentication
+        function checkUserAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                document.getElementById('guestAuth').style.display = 'none';
+                document.getElementById('userAuth').style.display = 'flex';
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                // Check if user is organizador
+                if (currentUser.type === 'organizador') {
+                    document.getElementById('profileSection').style.display = 'block';
+                    
+                    // Update profile link
+                    const profileLink = document.getElementById('profileLink');
+                    profileLink.href = `user-profile.html?nickname=${currentUser.identifier.split('@')[0]}`;
+                } else {
+                    // Redirect asistentes back to main page
+                    alert('Esta funcionalidad está disponible solo para organizadores.');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                // Redirect non-authenticated users to login
+                alert('Debe iniciar sesión como organizador para acceder a esta página.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
+                localStorage.removeItem('currentUser');
+                alert('Sesión cerrada correctamente');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Form submission
+        document.getElementById('institutionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Procesando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.getElementById('institutionError').style.display = 'none';
+            document.getElementById('institutionSuccess').style.display = 'none';
+            
+            const formData = new FormData(this);
+            const institutionName = formData.get('institutionName').trim();
+            const institutionDescription = formData.get('institutionDescription').trim();
+            const institutionType = formData.get('institutionType');
+            
+            // Basic validation
+            if (!institutionName || !institutionDescription || !institutionType) {
+                document.getElementById('institutionError').textContent = 'Todos los campos marcados con * son obligatorios';
+                document.getElementById('institutionError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Simulate institution creation
+            setTimeout(() => {
+                document.getElementById('institutionSuccess').textContent = `¡Institución "${institutionName}" creada exitosamente!`;
+                document.getElementById('institutionSuccess').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 2000);
+            }, 1000);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserAuth();
+        });
+    </script>
+</body>
+</html>

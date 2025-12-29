@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Edición - eventos.uy</title>
+    <link rel="stylesheet" href="../css/eventos-app.css">
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <div class="user-profile-section">
+                    <div class="user-avatar" id="userAvatar">
+                        <img id="userImage" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
+                        <span id="userInitial">U</span>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Usuario</span>
+                        <div class="user-actions">
+                            <a href="#" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                            <span style="color: #ccc; margin: 0 5px;">|</span>
+                            <a href="#" onclick="logout()" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="consulta-registro.html" id="assistantLink">Mis Registros</a>
+                    <a href="alta-evento.html" id="organizerLink1" style="font-weight: bold; color: #4a90e2;">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2" style="display: none;">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3" style="display: none;">Alta Institución</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="events.html">Eventos</a> > 
+                <a href="#" id="eventLink">Evento</a> > 
+                <span id="editionName">Edición</span>
+            </div>
+
+            <!-- Edition Detail -->
+            <div class="edition-detail-container">
+                <!-- Default/Error State -->
+                <div id="edition-default" class="edition-content">
+                    <div class="edition-main">
+                        <div class="edition-image">404</div>
+                        <div class="edition-info">
+                            <h2>Edición no encontrada</h2>
+                            <p>La edición solicitada no existe.</p>
+                            <p><a href="events.html">← Volver a Eventos</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edition EDEV03: Maratón de Montevideo 2024 -->
+                <div id="edition-EDEV03" class="edition-content" style="display: none;">
+                    <div class="edition-main">
+                        <div class="edition-image">
+                            <img src="../../imagens/IMG-EDEV03.jpeg" alt="Maratón de Montevideo 2024" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        </div>
+                        <div class="edition-info">
+                            <h2>Maratón de Montevideo 2024</h2>
+                            <p><strong>Evento:</strong> Maratón de Montevideo</p>
+                            <p><strong>Sigla:</strong> MARATON24</p>
+                            <p><strong>Ciudad:</strong> Montevideo, Uruguay</p>
+                            <p><strong>Fecha:</strong> 14/09/2024</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-aceptada">Aceptada</span></p>
+                            <p><strong>Fecha de Alta:</strong> 21/04/2024</p>
+                            <p><strong>Organizador:</strong> <a href="user-profile.html?nickname=miseventos" style="color: #007bff; text-decoration: none;">MisEventos (@miseventos)</a></p>
+                        </div>
+                    </div>
+                    <!-- Patrocinios Section -->
+                    <div class="patrocinios-section">
+                        <div class="patrocinios-header">Patrocinios</div>
+                        <div class="patrocinios-list">
+                            <div class="patrocinio-card">
+                                <div class="patrocinio-info">
+                                    <div class="patrocinio-name"><a href="consulta-patrocinio.html?id=PAT01" style="color: #007bff; text-decoration: none;">Banco República</a></div>
+                                    <div class="patrocinio-amount">$50,000</div>
+                                </div>
+                                <p><strong>Descripción:</strong> Patrocinio principal del evento</p>
+                            </div>
+                            <div class="patrocinio-card">
+                                <div class="patrocinio-info">
+                                    <div class="patrocinio-name"><a href="consulta-patrocinio.html?id=PAT02" style="color: #007bff; text-decoration: none;">Deportes SA</a></div>
+                                    <div class="patrocinio-amount">$25,000</div>
+                                </div>
+                                <p><strong>Descripción:</strong> Equipamiento deportivo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="registration-section">
+                        <div class="registration-header">Tipos de Registro Disponibles</div>
+                        <div class="registration-types">
+                            <div class="registration-type-card">
+                                <div class="registration-type-header">
+                                    <div class="registration-type-name"><a href="consulta-tipo-registro.html?id=TR01" style="color: #007bff; text-decoration: none;">Corredor 21K</a></div>
+                                    <div class="registration-type-price">$500</div>
+                                </div>
+                                <p><strong>Descripción:</strong> Inscripción a la media maratón</p>
+                                <p><strong>Cupos disponibles:</strong> 500</p>
+                                <button class="register-btn">Registrarse</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User-specific sections (will be shown/hidden by JavaScript) -->
+                    <div class="organizer-section" id="organizerSection-EDEV03" style="display: none;">
+                        <div class="organizer-header">Registros de la Edición (Solo Organizador)</div>
+                        <div class="registrations-list">
+                            <div class="registration-item">
+                                <p><strong>Ana Torres (@atorres)</strong> - Corredor 21K - $500 - Confirmado</p>
+                                <small>Fecha de registro: 30/07/2024</small>
+                            </div>
+                            <div class="registration-item">
+                                <p><strong>Carlos Méndez (@cmendez)</strong> - Corredor 21K - $500 - Confirmado</p>
+                                <small>Fecha de registro: 15/08/2024</small>
+                            </div>
+                            <div class="summary-item">
+                                <p><strong>Total registrados:</strong> 2 participantes</p>
+                                <p><strong>Ingresos:</strong> $1,000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="assistant-section" id="assistantSection-EDEV03" style="display: none;">
+                        <div class="assistant-header">Mi Registro en esta Edición</div>
+                        <div class="my-registration">
+                            <div class="registration-detail">
+                                <h4>Corredor 21K</h4>
+                                <p><strong>Fecha de registro:</strong> 30/07/2024</p>
+                                <p><strong>Costo:</strong> $500</p>
+                                <p><strong>Estado:</strong> <span style="color: #28a745; font-weight: bold;">Confirmado</span></p>
+                                <p><strong>Número de participante:</strong> 12345</p>
+                                <button class="btn btn-secondary" onclick="window.open('consulta-registro.html?id=1', '_blank')">Ver Detalles Completos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edition EDEV04: Maratón de Montevideo 2022 -->
+                <div id="edition-EDEV04" class="edition-content" style="display: none;">
+                    <div class="edition-main">
+                        <div class="edition-image">
+                            <img src="../../imagens/IMG-EDEV04.jpeg" alt="Maratón de Montevideo 2022" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        </div>
+                        <div class="edition-info">
+                            <h2>Maratón de Montevideo 2022</h2>
+                            <p><strong>Evento:</strong> Maratón de Montevideo</p>
+                            <p><strong>Sigla:</strong> MARATON22</p>
+                            <p><strong>Ciudad:</strong> Montevideo, Uruguay</p>
+                            <p><strong>Fecha:</strong> 14/09/2022</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-rechazada">Rechazada</span></p>
+                            <p><strong>Fecha de Alta:</strong> 21/05/2022</p>
+                            <p><strong>Organizador:</strong> US06</p>
+                        </div>
+                    </div>
+                    <div class="registration-section">
+                        <div class="registration-header">Registro no disponible</div>
+                        <p style="color: #666; text-align: center; padding: 20px;">
+                            Esta edición fue rechazada y no está disponible para registro.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Edition EDEV08: Tecnología Punta del Este 2026 -->
+                <div id="edition-EDEV08" class="edition-content" style="display: none;">
+                    <div class="edition-main">
+                        <div class="edition-image">Tecnología<br>2026</div>
+                        <div class="edition-info">
+                            <h2>Tecnología Punta del Este 2026</h2>
+                            <p><strong>Evento:</strong> Conferencia de Tecnología</p>
+                            <p><strong>Sigla:</strong> CONFTECH26</p>
+                            <p><strong>Ciudad:</strong> Punta del Este, Uruguay</p>
+                            <p><strong>Fecha:</strong> 06/04/2026 - 10/04/2026</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-aceptada">Aceptada</span></p>
+                            <p><strong>Fecha de Alta:</strong> 01/08/2025</p>
+                            <p><strong>Organizador:</strong> US10</p>
+                        </div>
+                    </div>
+                    <div class="registration-section">
+                        <div class="registration-header">Tipos de Registro Disponibles</div>
+                        <div class="registration-types">
+                            <div class="registration-type-card">
+                                <div class="registration-type-header">
+                                    <div class="registration-type-name">Estudiante</div>
+                                    <div class="registration-type-price">$1000</div>
+                                </div>
+                                <p><strong>Descripción:</strong> Acceso para estudiantes</p>
+                                <p><strong>Cupos disponibles:</strong> 50</p>
+                                <button class="register-btn">Registrarse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edition EDEV09: Mobile World Congress 2025 -->
+                <div id="edition-EDEV09" class="edition-content" style="display: none;">
+                    <div class="edition-main">
+                        <div class="edition-image">
+                            <img src="../../imagens/IMG-EDEV09.png" alt="Mobile World Congress 2025" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        </div>
+                        <div class="edition-info">
+                            <h2>Mobile World Congress 2025</h2>
+                            <p><strong>Evento:</strong> Conferencia de Tecnología</p>
+                            <p><strong>Sigla:</strong> MWC</p>
+                            <p><strong>Ciudad:</strong> Barcelona, España</p>
+                            <p><strong>Fecha:</strong> 12/12/2025 - 15/12/2025</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-ingresada">Ingresada</span></p>
+                            <p><strong>Fecha de Alta:</strong> 21/08/2025</p>
+                            <p><strong>Organizador:</strong> US05</p>
+                        </div>
+                    </div>
+                    <div class="registration-section">
+                        <div class="registration-header">Tipos de Registro Disponibles</div>
+                        <div class="registration-types">
+                            <div class="registration-type-card">
+                                <div class="registration-type-header">
+                                    <div class="registration-type-name">Full</div>
+                                    <div class="registration-type-price">$750</div>
+                                </div>
+                                <p><strong>Descripción:</strong> Acceso ilimitado + Cena de gala</p>
+                                <p><strong>Cupos disponibles:</strong> 550</p>
+                                <button class="register-btn">Registrarse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edition EDEV10: Web Summit 2026 -->
+                <div id="edition-EDEV10" class="edition-content" style="display: none;">
+                    <div class="edition-main">
+                        <div class="edition-image">Web<br>Summit</div>
+                        <div class="edition-info">
+                            <h2>Web Summit 2026</h2>
+                            <p><strong>Evento:</strong> Conferencia de Tecnología</p>
+                            <p><strong>Sigla:</strong> WS26</p>
+                            <p><strong>Ciudad:</strong> Lisboa, Portugal</p>
+                            <p><strong>Fecha:</strong> 13/01/2026 - 01/02/2026</p>
+                            <p><strong>Estado:</strong> <span class="status-badge status-aceptada">Aceptada</span></p>
+                            <p><strong>Fecha de Alta:</strong> 04/06/2025</p>
+                            <p><strong>Organizador:</strong> US05</p>
+                        </div>
+                    </div>
+                    <div class="registration-section">
+                        <div class="registration-header">Tipos de Registro Disponibles</div>
+                        <div class="registration-types">
+                            <div class="registration-type-card">
+                                <div class="registration-type-header">
+                                    <div class="registration-type-name">Estudiante</div>
+                                    <div class="registration-type-price">$300</div>
+                                </div>
+                                <p><strong>Descripción:</strong> Acceso para estudiantes</p>
+                                <p><strong>Cupos disponibles:</strong> 1</p>
+                                <button class="register-btn">Registrarse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameter for edition ID
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Show the correct edition content based on URL parameter
+        function showEditionContent() {
+            const editionId = getUrlParameter('id');
+            
+            // Hide all edition contents first
+            const allEditionContents = document.querySelectorAll('.edition-content');
+            allEditionContents.forEach(content => content.style.display = 'none');
+            
+            // Show the specific edition content
+            const editionElement = document.getElementById(`edition-${editionId}`);
+            
+            if (editionElement) {
+                editionElement.style.display = 'block';
+                
+                // Update page title and breadcrumb
+                const editionTitle = editionElement.querySelector('h2').textContent;
+                document.title = `${editionTitle} - eventos.uy`;
+                document.getElementById('editionName').textContent = editionTitle;
+                
+                // Update event link in breadcrumb
+                const eventLink = document.getElementById('eventLink');
+                if (editionId === 'EDEV03' || editionId === 'EDEV04') {
+                    eventLink.href = 'event-detail.html?id=EV04';
+                    eventLink.textContent = 'Maratón de Montevideo';
+                } else {
+                    eventLink.href = 'event-detail.html?id=EV01';
+                    eventLink.textContent = 'Conferencia de Tecnología';
+                }
+                
+                // Show user-specific sections
+                showUserSpecificSections(editionId);
+            } else {
+                // Show default/error content
+                document.getElementById('edition-default').style.display = 'block';
+                document.title = 'Edición no encontrada - eventos.uy';
+                document.getElementById('editionName').textContent = 'Edición no encontrada';
+            }
+        }
+
+        // Show user-specific sections based on login state and user type
+        function showUserSpecificSections(editionId) {
+            const currentUser = localStorage.getItem('currentUser');
+            
+            // Hide all user-specific sections first
+            const organizerSections = document.querySelectorAll('.organizer-section');
+            const assistantSections = document.querySelectorAll('.assistant-section');
+            organizerSections.forEach(section => section.style.display = 'none');
+            assistantSections.forEach(section => section.style.display = 'none');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                
+                // Define edition-organizer mapping (in real app this would come from backend)
+                const editionOrganizers = {
+                    'EDEV03': 'miseventos', // Maratón 2024 - MisEventos
+                    'EDEV04': 'miseventos', // Maratón 2022 - MisEventos  
+                    'EDEV08': 'techorg',    // Tech Punta del Este - TechOrg
+                    'EDEV09': 'techorg',    // Mobile World Congress - TechOrg
+                    'EDEV10': 'techorg'     // Web Summit - TechOrg
+                };
+                
+                // Define user registrations (in real app this would come from backend)
+                const userRegistrations = {
+                    'atorres': ['EDEV03', 'EDEV10'], // Ana Torres registered in these editions
+                    'cmendez': ['EDEV03']             // Carlos Méndez registered in these editions
+                };
+                
+                // Show organizer section if user is the organizer of this edition
+                if (user.type === 'organizador' && editionOrganizers[editionId] === user.nickname) {
+                    const organizerSection = document.getElementById(`organizerSection-${editionId}`);
+                    if (organizerSection) {
+                        organizerSection.style.display = 'block';
+                    }
+                }
+                
+                // Show assistant section if user is registered in this edition
+                if (user.type === 'asistente' && userRegistrations[user.nickname] && userRegistrations[user.nickname].includes(editionId)) {
+                    const assistantSection = document.getElementById(`assistantSection-${editionId}`);
+                    if (assistantSection) {
+                        assistantSection.style.display = 'block';
+                    }
+                }
+            }
+        }
+
+        // Check login state and update UI
+        function checkLoginState() {
+            const currentUser = localStorage.getItem('currentUser');
+            const guestAuth = document.getElementById('guestAuth');
+            const userAuth = document.getElementById('userAuth');
+            const profileSection = document.getElementById('profileSection');
+            const profileLink = document.getElementById('profileLink');
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            const userImage = document.getElementById('userImage');
+            const userInitial = document.getElementById('userInitial');
+            const userProfileLink = document.getElementById('userProfileLink');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                guestAuth.style.display = 'none';
+                userAuth.style.display = 'block';
+                profileSection.style.display = 'block';
+                
+                // Update user name in header
+                userName.textContent = user.name;
+                
+                // Update profile links with user nickname
+                profileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                userProfileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                
+                // Update user avatar - try to show image, fallback to initial
+                if (user.image) {
+                    userImage.src = `../../imagens/${user.image}`;
+                    userImage.alt = user.name;
+                    userImage.style.display = 'block';
+                    userInitial.style.display = 'none';
+                    
+                    // Handle image load error
+                    userImage.onerror = function() {
+                        userImage.style.display = 'none';
+                        userInitial.style.display = 'flex';
+                        userInitial.textContent = user.name.charAt(0).toUpperCase();
+                    };
+                } else {
+                    userImage.style.display = 'none';
+                    userInitial.style.display = 'flex';
+                    userInitial.textContent = user.name.charAt(0).toUpperCase();
+                }
+                
+                // Show/hide organizer-specific options
+                const altaInstitucion = profileSection.querySelector('a[href="alta-institucion.html"]');
+                if (user.type === 'organizador') {
+                    altaInstitucion.style.display = 'block';
+                } else {
+                    altaInstitucion.style.display = 'none';
+                }
+            } else {
+                guestAuth.style.display = 'block';
+                userAuth.style.display = 'none';
+                profileSection.style.display = 'none';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showEditionContent();
+            checkLoginState();
+        });
+    </script>
+
+</body>
+</html>

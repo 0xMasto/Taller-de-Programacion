@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Ana Torres - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../asistente/index.html" class="logo">Eventos.uy</a>
+    </div>
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">AT</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">Ana Torres</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US01.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../asistente/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+      <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="index.html" id="assistantLink">Registro a Edición</a>
+                </div>
+            </div>
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Profile Content -->
+            <div class="profile-main">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-large">
+                        <img src="../../../imagens/IMG-US01.jpg" alt="Ana Torres" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <div class="profile-name">
+                        <h2>Ana Torres</h2>
+                        <p><strong>@atorres</strong> • <span class="user-type-badge badge-asistente">Asistente</span></p>
+                        <p style="color: #666;">Estudiante de Ingeniería en Computación</p>
+                    </div>
+                </div>
+
+                <!-- Profile Tabs -->
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Información</div>
+                    <div class="profile-tab">Mis Registros</div>
+                    <div class="profile-tab">Editar Perfil</div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <!-- Information Tab -->
+                    <div class="tab-content active">
+                        <div class="profile-section">
+                            <div class="section-title">Información Personal</div>
+                            <div class="profile-info">
+                                <p><strong>Nombre completo:</strong> Ana Torres</p>
+                                <p><strong>Nickname:</strong> atorres</p>
+                                <p><strong>Email:</strong> atorres@gmail.com</p>
+                                <p><strong>Fecha de nacimiento:</strong> 12/05/1990</p>
+                                <p><strong>Institución:</strong> Facultad de Ingeniería</p>
+                                <p><strong>Tipo de usuario:</strong> Asistente</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registrations Tab -->
+                    <div class="tab-content">
+                        <div class="profile-section">
+                            <div class="section-title">Historial de Registros</div>
+                            <div class="registrations-list">
+                                <!-- Registration 1 - From data.json RE02 -->
+                                <div class="registration-card">
+                                    <div class="registration-header">
+                                        <div class="registration-title">Maratón de Montevideo 2024 - Corredor 21K</div>
+                                    </div>
+                                    <div style="margin-top: 15px;">
+                                        <a href="consulta-registro-RE02.html" class="btn btn-primary">Ver Detalles</a>
+                                    </div>
+                                </div>
+
+                                <!-- Registration 2 - From data.json RE03 -->
+                                <div class="registration-card">
+                                    <div class="registration-header">
+                                        <div class="registration-title">Web Summit 2026 - Estudiante</div>
+                                    </div>
+                                    <div style="margin-top: 15px;">
+                                        <a href="consulta-registro-RE03.html" class="btn btn-primary">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit Profile Tab -->
+                    <div class="tab-content">
+                        <div class="profile-section">
+                            <div class="section-title">Modificar Datos Personales</div>
+                            <form class="grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" value="Ana" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Apellido:</label>
+                                    <input type="text" class="form-control" value="Torres" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de Nacimiento:</label>
+                                    <input type="date" class="form-control" value="1990-05-12">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Institución:</label>
+                                    <select class="form-control">
+                                        <option value="INS01" selected>Facultad de Ingeniería</option>
+                                        <option value="">Sin institución</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Nueva Contraseña (opcional):</label>
+                                    <input type="password" class="form-control" placeholder="Dejar vacío si no desea cambiar">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Confirmar Nueva Contraseña:</label>
+                                    <input type="password" class="form-control" placeholder="Repetir nueva contraseña">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Imagen de Perfil:</label>
+                                    <input type="file" class="form-control" accept="image/*">
+                                </div>
+                                
+                                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                    <button type="button" class="btn btn-success">Guardar Cambios</button>
+                                    <button type="button" class="btn btn-secondary">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="profile-section">
+                            <div class="section-title">Información No Modificable</div>
+                            <div class="profile-info">
+                                <p><strong>Nickname:</strong> atorres <em>(no se puede cambiar)</em></p>
+                                <p><strong>Email:</strong> atorres@gmail.com <em>(no se puede cambiar)</em></p>
+                                <p><strong>Tipo de usuario:</strong> Asistente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Cambio de pestañas por índice
+    (function() {
+      var tabs = document.querySelectorAll('.profile-tab');
+      var contents = document.querySelectorAll('.tab-content');
+      if (!tabs.length || !contents.length) return;
+      tabs.forEach(function(tab, index) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          contents.forEach(function(c) { c.classList.remove('active'); });
+          tab.classList.add('active');
+          if (contents[index]) { contents[index].classList.add('active'); }
+        });
+      });
+    })();
+    </script>
+</body>
+</html>

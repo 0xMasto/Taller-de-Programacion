@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Patrocinio - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../organizador/index.html" class="logo">Eventos.uy</a>
+    </div>
+
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US04.jpeg" alt="MisEventos" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">ME</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">MisEventos</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US04.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../organizador/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Si no hay usuario logueado mostrarías:
+      <div id="guestAuth">
+        <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+      </div>
+      -->
+    </div>
+  </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="consulta-usuario-US04.html" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html" id="organizerLink1">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3">Alta Institución</a>
+                </div>
+            </div>
+
+    
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <div class="page-content">
+                <h1 class="page-title">Alta de Patrocinio</h1>
+                
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Seleccionar Edición:</label>
+                        <select class="form-control" required>
+                            <option value="">Selecciona una de tus ediciones...</option>
+                            <option value="EDEV03" selected>TechConf 2024 - Conferencia de Tecnología</option>
+                            <option value="EDEV04">TechConf 2023 - Conferencia de Tecnología</option>
+                            <option value="EDEV05">TechConf 2025 - Conferencia de Tecnología (Pendiente)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Seleccionar Institución:</label>
+                        <select class="form-control" required>
+                            <option value="">Selecciona una institución...</option>
+                            <option value="INST01">Facultad de Ingeniería - UdelaR</option>
+                            <option value="INST02">Facultad de Medicina - UdelaR</option>
+                            <option value="INST03">TechCorp Uruguay</option>
+                            <option value="INST04">Cámara de Tecnología</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Nivel de Patrocinio:</label>
+                            <select class="form-control" required>
+                                <option value="">Seleccionar nivel...</option>
+                                <option value="platino">Platino</option>
+                                <option value="oro">Oro</option>
+                                <option value="plata">Plata</option>
+                                <option value="bronce">Bronce</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Aporte Económico (UYU):</label>
+                            <input type="number" class="form-control" placeholder="50000" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Tipos de Registro para Registros Gratuitos:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type1" name="registrationTypes" value="estudiante">
+                                <label for="type1">Estudiante</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type2" name="registrationTypes" value="profesional">
+                                <label for="type2">Profesional</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Cantidad de Registros Gratuitos:</label>
+                            <input type="number" class="form-control" placeholder="20" min="1" required>
+                            <small class="form-text">No puede superar el 20% del aporte económico</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Código de Patrocinio:</label>
+                            <input type="text" class="form-control" placeholder="FING2024" maxlength="20" required>
+                            <small class="form-text">Código único para registros gratuitos</small>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <strong>ℹ️ Validaciones automáticas:</strong><br>
+                        • El sistema validará que no exista ya un patrocinio de esta institución para esta edición<br>
+                        • El costo de los registros gratuitos no puede superar el 20% del aporte económico
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button type="submit" class="btn btn-success" style="flex: 1;">Crear Patrocinio</button>
+                        <button type="reset" class="btn btn-secondary">Limpiar</button>
+                        <a href="index.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

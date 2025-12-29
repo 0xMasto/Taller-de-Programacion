@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Edición - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #4a90e2;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <a href="#" onclick="logout()" style="color: #333; text-decoration: underline;">Cerrar sesión</a>
+                <div class="user-avatar" id="userAvatar">M</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="consulta-registro.html" id="assistantLink">Mis Registros</a>
+                    <a href="alta-evento.html" id="organizerLink1" style="font-weight: bold; color: #4a90e2;">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2" style="display: none;">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3" style="display: none;">Alta Institución</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="form-content">
+                <a href="../index.html" class="back-link">← Volver al inicio</a>
+                <h2 class="form-title">Alta Edición de Evento</h2>
+                <p style="color: #666; margin-bottom: 30px;">Crear una nueva edición para un evento existente</p>
+
+                <form id="editionForm">
+                    <div class="form-group">
+                        <label for="eventSelect" class="form-label">Evento *</label>
+                        <select id="eventSelect" name="eventSelect" class="form-control" required>
+                            <option value="">Seleccionar evento</option>
+                            <option value="EV01">Conferencia de Tecnología</option>
+                            <option value="EV04">Maratón de Montevideo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editionName" class="form-label">Nombre de la Edición * <small>(único en la plataforma)</small></label>
+                        <input type="text" id="editionName" name="editionName" class="form-control" 
+                               placeholder="Ej: TechConf Uruguay 2025" required>
+                        <span class="error-message" id="editionNameError"></span>
+                        <div id="nameConflictDialog" style="display: none; margin-top: 10px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px;">
+                            <p style="color: #856404; margin-bottom: 10px;"><strong>⚠️ Nombre ya en uso:</strong> El nombre "<span id="conflictName"></span>" ya está siendo utilizado por otra edición.</p>
+                            <div>
+                                <button type="button" class="btn btn-warning" onclick="modifyName()" style="margin-right: 10px;">Modificar Nombre</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelCreation()">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sigla" class="form-label">Sigla *</label>
+                        <input type="text" id="sigla" name="sigla" class="form-control" 
+                               placeholder="Ej: TCU2025" maxlength="10" required>
+                        <small style="color: #666;">Abreviación o código identificador de la edición (máximo 10 caracteres)</small>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="ciudad" class="form-label">Ciudad *</label>
+                            <input type="text" id="ciudad" name="ciudad" class="form-control" 
+                                   placeholder="Ej: Montevideo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pais" class="form-label">País *</label>
+                            <select id="pais" name="pais" class="form-control" required>
+                                <option value="">Seleccionar país</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Brasil">Brasil</option>
+                                <option value="Chile">Chile</option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Perú">Perú</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Venezuela">Venezuela</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="startDate" class="form-label">Fecha de Inicio *</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endDate" class="form-label">Fecha de Fin *</label>
+                            <input type="date" id="endDate" name="endDate" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="editionImage" class="form-label">Imagen de la Edición (Opcional)</label>
+                        <input type="file" id="editionImage" name="editionImage" class="form-control" 
+                               accept="image/*" onchange="previewEditionImage(event)">
+                        <div class="image-preview-container" id="imagePreviewContainer" style="display: none; margin-top: 10px;">
+                            <img id="imagePreview" src="" alt="Vista previa" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #ddd;">
+                            <button type="button" onclick="removeEditionImage()" style="margin-left: 10px; padding: 5px 10px; background-color: #dc3545; color: white; border: none; border-radius: 3px; cursor: pointer;">Quitar imagen</button>
+                        </div>
+                        <small style="color: #666; font-size: 0.875rem;">Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB</small>
+                        <span class="error-message" id="editionImageError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Crear Edición</button>
+                        <a href="../index.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+
+                    <div id="editionError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="editionSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        // Check user authentication
+        function checkUserAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                document.getElementById('guestAuth').style.display = 'none';
+                document.getElementById('userAuth').style.display = 'flex';
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                // Check if user is organizador
+                if (currentUser.type === 'organizador') {
+                    document.getElementById('profileSection').style.display = 'block';
+                    
+                    // Update profile link
+                    const profileLink = document.getElementById('profileLink');
+                    profileLink.href = `user-profile.html?nickname=${currentUser.identifier.split('@')[0]}`;
+                } else {
+                    // Redirect asistentes back to main page
+                    alert('Esta funcionalidad está disponible solo para organizadores.');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                // Redirect non-authenticated users to login
+                alert('Debe iniciar sesión como organizador para acceder a esta página.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
+                localStorage.removeItem('currentUser');
+                alert('Sesión cerrada correctamente');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Mock database of existing edition names (in real app this would be from backend)
+        const existingEditionNames = [
+            'TechConf Uruguay 2024',
+            'Maratón de Montevideo 2024',
+            'Montevideo Comics 2024',
+            'Web Summit 2026',
+            'Startup Weekend Montevideo'
+        ];
+
+        // Check if edition name is unique
+        function checkNameUniqueness(name) {
+            return !existingEditionNames.includes(name.trim());
+        }
+
+        // Handle name conflict
+        function handleNameConflict(name) {
+            document.getElementById('conflictName').textContent = name;
+            document.getElementById('nameConflictDialog').style.display = 'block';
+            document.getElementById('editionName').classList.add('error');
+        }
+
+        // Modify name function
+        function modifyName() {
+            document.getElementById('nameConflictDialog').style.display = 'none';
+            document.getElementById('editionName').classList.remove('error');
+            document.getElementById('editionName').focus();
+        }
+
+        // Cancel creation function
+        function cancelCreation() {
+            if (confirm('¿Está seguro que desea cancelar la creación de la edición?')) {
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Image preview functionality
+        function previewEditionImage(event) {
+            const file = event.target.files[0];
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const preview = document.getElementById('imagePreview');
+            const errorElement = document.getElementById('editionImageError');
+            
+            // Clear previous errors
+            errorElement.textContent = '';
+            event.target.classList.remove('error');
+            
+            if (file) {
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    errorElement.textContent = 'Formato de imagen no válido. Use JPG, PNG o GIF.';
+                    event.target.classList.add('error');
+                    return;
+                }
+                
+                // Validate file size (5MB = 5 * 1024 * 1024 bytes)
+                const maxSize = 5 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    errorElement.textContent = 'La imagen es demasiado grande. Tamaño máximo: 5MB.';
+                    event.target.classList.add('error');
+                    return;
+                }
+                
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        }
+
+        // Remove image functionality
+        function removeEditionImage() {
+            const fileInput = document.getElementById('editionImage');
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const errorElement = document.getElementById('editionImageError');
+            
+            fileInput.value = '';
+            previewContainer.style.display = 'none';
+            errorElement.textContent = '';
+            fileInput.classList.remove('error');
+        }
+
+        // Form submission
+        document.getElementById('editionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Validando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.getElementById('editionError').style.display = 'none';
+            document.getElementById('editionSuccess').style.display = 'none';
+            document.getElementById('nameConflictDialog').style.display = 'none';
+            
+            const formData = new FormData(this);
+            const eventSelect = formData.get('eventSelect');
+            const editionName = formData.get('editionName').trim();
+            const sigla = formData.get('sigla').trim();
+            const ciudad = formData.get('ciudad').trim();
+            const pais = formData.get('pais');
+            const startDate = formData.get('startDate');
+            const endDate = formData.get('endDate');
+            
+            // Basic validation
+            if (!eventSelect || !editionName || !sigla || !ciudad || !pais || !startDate || !endDate) {
+                document.getElementById('editionError').textContent = 'Todos los campos marcados con * son obligatorios';
+                document.getElementById('editionError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Date validation
+            if (new Date(startDate) >= new Date(endDate)) {
+                document.getElementById('editionError').textContent = 'La fecha de fin debe ser posterior a la fecha de inicio';
+                document.getElementById('editionError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Check name uniqueness
+            if (!checkNameUniqueness(editionName)) {
+                handleNameConflict(editionName);
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Simulate edition creation process
+            submitButton.textContent = 'Creando edición...';
+            
+            setTimeout(() => {
+                // Handle optional image
+                const editionImageFile = formData.get('editionImage');
+                let imageInfo = '';
+                if (editionImageFile && editionImageFile.size > 0) {
+                    imageInfo = ` con imagen "${editionImageFile.name}"`;
+                }
+                
+                // Create edition data
+                const editionData = {
+                    eventId: eventSelect,
+                    name: editionName,
+                    sigla: sigla,
+                    ciudad: ciudad,
+                    pais: pais,
+                    startDate: startDate,
+                    endDate: endDate,
+                    status: 'Ingresada',
+                    creationDate: new Date().toISOString(),
+                    organizerId: currentUser.nickname,
+                    hasImage: editionImageFile && editionImageFile.size > 0
+                };
+                
+                console.log('Edición creada:', editionData);
+                
+                document.getElementById('editionSuccess').innerHTML = `
+                    <strong>¡Edición creada exitosamente!</strong><br>
+                    <strong>Nombre:</strong> ${editionName}<br>
+                    <strong>Sigla:</strong> ${sigla}<br>
+                    <strong>Ubicación:</strong> ${ciudad}, ${pais}<br>
+                    <strong>Estado:</strong> <span style="color: #ffc107; font-weight: bold;">Ingresada</span><br>
+                    <strong>Fecha de creación:</strong> ${new Date().toLocaleDateString('es-ES')}<br>
+                    ${imageInfo}<br><br>
+                    La edición debe ser aprobada por un administrador antes de estar disponible.
+                `;
+                document.getElementById('editionSuccess').style.display = 'block';
+                
+                // Add to existing names to prevent duplicates in same session
+                existingEditionNames.push(editionName);
+                
+                // Reset form
+                this.reset();
+                removeEditionImage();
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect after 5 seconds
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 5000);
+            }, 1500);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserAuth();
+
+            // Set minimum date to today for date fields
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('startDate').setAttribute('min', today);
+            document.getElementById('endDate').setAttribute('min', today);
+
+            // Update end date minimum when start date changes
+            document.getElementById('startDate').addEventListener('change', function() {
+                const startDate = this.value;
+                if (startDate) {
+                    document.getElementById('endDate').setAttribute('min', startDate);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

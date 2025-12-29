@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferencia de Tecnología - eventos.uy</title>
+    <link rel="stylesheet" href="../../css/eventos-app.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+  <header class="main-header">
+    <!-- Izquierda: Logo -->
+    <div class="header-left">
+      <a href="../organizador/index.html" class="logo">Eventos.uy</a>
+    </div>
+
+    <!-- Centro: Search -->
+    <div class="header-center">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+        <button class="search-btn">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Derecha: Auth Links -->
+    <div class="header-right auth-links">
+      <div id="userAuth">
+        <div class="user-info">
+          <div class="user-profile-section">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userImage" src="../../../imagens/IMG-US04.jpeg" alt="MisEventos" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <span id="userInitial" style="display: none;">ME</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">MisEventos</span>
+              <div class="user-actions">
+                <a href="consulta-usuario-US04.html" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="../organizador/cerrarSesion.html" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Si no hay usuario logueado mostrarías:
+      <div id="guestAuth">
+        <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+      </div>
+      -->
+    </div>
+  </header>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="consulta-usuario-US04.html" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="alta-evento.html" id="organizerLink1">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3">Alta Institución</a>
+                </div>
+            </div>
+            <!-- Navigation Links -->
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html">Tecnología</a></li>
+                    <li><a href="index.html">Innovación</a></li>
+                    <li><a href="index.html">Deporte</a></li>
+                    <li><a href="index.html">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="usuarios.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Note Alert -->
+            <!-- Event Detail -->
+            <div class="event-detail-container">
+                <div class="event-main">
+                    <div class="event-image">Conferencia<br>Tecnología</div>
+                    <div class="event-info">
+                        <h2>Conferencia de Tecnología</h2>
+                        <p><strong>Descripción:</strong> Evento sobre innovación tecnológica</p>
+                        <p><strong>Sigla:</strong> CONFTEC</p>
+                        <p><strong>Categorías:</strong> Tecnología, Innovación</p>
+                        <p><strong>Fecha Alta:</strong> 10/01/2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editions Sidebar -->
+        <div class="editions-sidebar">
+            <div class="editions-section">
+                <div class="editions-header">Ediciones</div>
+                <div class="editions-list">
+                    <!-- Edition 1: EDEV08 - Aceptada -->
+                    <a href="consulta-edicion.html" class="edition-link">
+                        <div class="edition-item">
+                            <div class="edition-image">Tecnología<br>2026</div>
+                            <div class="edition-content">
+                                <div class="edition-name">Tecnología Punta del Este 2026</div>
+                                <small style="color: #666;">
+                                    Punta del Este, Uruguay | 06/04/2026 - 10/04/2026 | Estado: Aceptada
+                                </small>
+                                
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Edition 2: EDEV09 - Ingresada -->
+                    <a href="consulta-edicion.html" class="edition-link">
+                        <div class="edition-item">
+                            <div class="edition-image">
+                                <img src="../../../imagens/IMG-EDEV09.png" alt="Mobile World Congress 2025" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <div class="edition-content">
+                                <div class="edition-name">Mobile World Congress 2025</div>
+                                <small style="color: #666;">
+                                    Barcelona, España | 12/12/2025 - 15/12/2025 | Estado: Ingresada
+                                </small>
+                               
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Edition 3: EDEV10 - Aceptada - User is registered here -->
+                    <a href="consulta-edicion.html" class="edition-link">
+                        <div class="edition-item" >
+                            <div class="edition-image">Web<br>Summit</div>
+                            <div class="edition-content">
+                                <div class="edition-name">Web Summit 2026 </div>
+                                <small style="color: #666;">
+                                    Lisboa, Portugal | 13/01/2026 - 01/02/2026 | Estado: Aceptada
+                                </small>
+                              
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

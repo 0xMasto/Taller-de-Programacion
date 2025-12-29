@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .login-form {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .login-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <a href="events.html">Eventos</a> / <a href="users.html">Usuarios</a> / <a href="register.html">Registrarse</a>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="events.html?category=tecnologia">Tecnología</a></li>
+                    <li><a href="events.html?category=innovacion">Innovación</a></li>
+                    <li><a href="events.html?category=literatura">Literatura</a></li>
+                    <li><a href="events.html?category=cultura">Cultura</a></li>
+                    <li><a href="events.html?category=musica">Música</a></li>
+                    <li><a href="events.html?category=deporte">Deporte</a></li>
+                    <li><a href="events.html?category=salud">Salud</a></li>
+                    <li><a href="events.html?category=entretenimiento">Entretenimiento</a></li>
+                    <li><a href="events.html?category=agro">Agro</a></li>
+                    <li><a href="events.html?category=negocios">Negocios</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="login-form">
+                <h2 class="login-title">Iniciar Sesión</h2>
+                <p style="color: #666; margin-bottom: 20px;">Accede a tu cuenta para participar en eventos</p>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="identifier" class="form-label">Nickname o Email</label>
+                        <input type="text" id="identifier" name="identifier" 
+                               class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" id="password" name="password" 
+                               class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    </div>
+
+                    <div id="loginError" class="alert alert-danger" style="display: none;"></div>
+                </form>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+                </div>
+
+                <!-- Test Users Info -->
+                <div style="margin-top: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
+                    <h3 style="margin-top: 0; color: #333;">Usuarios de Prueba</h3>
+                    <p style="color: #666; margin-bottom: 15px;">Puedes usar estas credenciales para probar el sistema:</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div style="padding: 10px; background-color: white; border-radius: 4px; border: 1px solid #ddd;">
+                            <strong>Asistente</strong><br>
+                            <small>Usuario: <code>atorres</code> o <code>atorres@gmail.com</code></small><br>
+                            <small>Contraseña: <code>123.torres</code></small><br>
+                            <button onclick="useTestUser('atorres', '123.torres')" style="margin-top: 5px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">Usar</button>
+                        </div>
+                        
+                        <div style="padding: 10px; background-color: white; border-radius: 4px; border: 1px solid #ddd;">
+                            <strong>Organizador</strong><br>
+                            <small>Usuario: <code>miseventos</code> o <code>contacto@miseventos.com</code></small><br>
+                            <small>Contraseña: <code>22miseventos</code></small><br>
+                            <button onclick="useTestUser('miseventos', '22miseventos')" style="margin-top: 5px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">Usar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let jsonData = null;
+
+        // Load JSON data
+        async function loadJsonData() {
+            try {
+                const response = await fetch('../../data.json');
+                jsonData = await response.json();
+                console.log('JSON data loaded successfully');
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+            }
+        }
+
+        // Fill login form with test data
+        function useTestUser(identifier, password) {
+            document.getElementById('identifier').value = identifier;
+            document.getElementById('password').value = password;
+        }
+
+        // Handle login form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Procesando...';
+            submitButton.disabled = true;
+            
+            const identifier = document.getElementById('identifier').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('loginError');
+            
+            // Hide previous errors
+            errorDiv.style.display = 'none';
+            
+            if (!jsonData || !jsonData.users) {
+                errorDiv.textContent = 'Error: No se pudo cargar la base de datos de usuarios';
+                errorDiv.style.display = 'block';
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Find user by nickname or email
+            const user = jsonData.users.find(u => 
+                u.nickname === identifier || u.email === identifier
+            );
+            
+            if (user && user.password === password) {
+                // Store user session
+                localStorage.setItem('currentUser', JSON.stringify({
+                    id: user.id,
+                    nickname: user.nickname,
+                    name: user.name,
+                    email: user.email,
+                    type: user.type === 'A' ? 'asistente' : 'organizador',
+                    image: user.image,
+                    loginTime: new Date().toISOString()
+                }));
+                
+                // Redirect to main page
+                alert(`¡Bienvenido ${user.name}!`);
+                window.location.href = '../index.html';
+                                
+            } else {
+                // Restore button state on error
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                errorDiv.textContent = 'Usuario o contraseña incorrectos';
+                errorDiv.style.display = 'block';
+            }
+        });
+
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            loadJsonData();
+            
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                if (confirm(`Ya tienes una sesión iniciada como ${user.name}. ¿Continuar a la página principal?`)) {
+                    window.location.href = '../index.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

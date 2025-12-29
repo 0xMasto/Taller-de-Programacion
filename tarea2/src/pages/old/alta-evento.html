@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Evento - eventos.uy</title>
+    <link rel="stylesheet" href="../css/simple-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .auth-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-links a {
+            color: #333;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #00cc99;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: #357abd;
+        }
+
+        .sidebar-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #333;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: #4a90e2;
+        }
+
+        .users-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-section {
+            background-color: #e8e8e8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: underline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #4a90e2;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #357abd;
+        }
+
+        /* Checkbox Group Styles */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+        }
+
+        .checkbox-item:hover {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .form-text {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* User Profile Section Styles */
+        .user-profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-actions a:hover {
+            text-decoration: underline !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-links">
+        <div id="guestAuth">
+            <a href="login.html">Iniciar Sesión</a> / <a href="register.html">Registrarse</a>
+        </div>
+        <div id="userAuth" style="display: none;">
+            <div class="user-info">
+                <div class="user-profile-section">
+                    <div class="user-avatar" id="userAvatar">
+                        <img id="userImage" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
+                        <span id="userInitial">U</span>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Usuario</span>
+                        <div class="user-actions">
+                            <a href="#" id="userProfileLink" style="color: #007bff; text-decoration: none; font-size: 12px;">Ver Perfil</a>
+                            <span style="color: #ccc; margin: 0 5px;">|</span>
+                            <a href="#" onclick="logout()" style="color: #dc3545; text-decoration: none; font-size: 12px;">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="../index.html" class="logo">Eventos.uy</a>
+            
+            <!-- Profile Section (only for logged in users) -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <div class="profile-header">Mi Perfil</div>
+                <div class="profile-options">
+                    <a href="user-profile.html?nickname=" id="profileLink">Modificar Datos de Usuario</a>
+                    <a href="consulta-registro.html" id="assistantLink">Mis Registros</a>
+                    <a href="alta-evento.html" id="organizerLink1" style="font-weight: bold; color: #4a90e2;">Alta Evento</a>
+                    <a href="alta-edicion.html" id="organizerLink2" style="display: none;">Alta Edición</a>
+                    <a href="alta-institucion.html" id="organizerLink3" style="display: none;">Alta Institución</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Categorías</div>
+                <ul class="category-list">
+                    <li><a href="index.html" data-category="tecnología">Tecnología</a></li>
+                    <li><a href="index.html" data-category="innovación">Innovación</a></li>
+                    <li><a href="index.html" data-category="deporte">Deporte</a></li>
+                    <li><a href="index.html" data-category="salud">Salud</a></li>
+                </ul>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+                <div class="sidebar-title">
+                    <a href="users.html" style="color: #333; text-decoration: underline;">Usuarios</a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Eventos, Ediciones">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="form-content">
+                <a href="../index.html" class="back-link">← Volver al inicio</a>
+                <h2 class="form-title">Alta Evento</h2>
+                <p style="color: #666; margin-bottom: 30px;">Crear un nuevo evento en la plataforma</p>
+
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventName" class="form-label">Nombre del Evento *</label>
+                        <input type="text" id="eventName" name="eventName" class="form-control" 
+                               placeholder="Ej: Conferencia de Tecnología 2025" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDescription" class="form-label">Descripción *</label>
+                        <textarea id="eventDescription" name="eventDescription" class="form-control" rows="4"
+                                  placeholder="Describe el evento..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Categorías * (Selecciona una o más)</label>
+                        <div class="checkbox-group" id="eventCategories">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-tecnologia" name="eventCategories" value="tecnologia">
+                                <label for="cat-tecnologia">Tecnología</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-innovacion" name="eventCategories" value="innovacion">
+                                <label for="cat-innovacion">Innovación</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-deporte" name="eventCategories" value="deporte">
+                                <label for="cat-deporte">Deporte</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-salud" name="eventCategories" value="salud">
+                                <label for="cat-salud">Salud</label>
+                            </div>
+                        </div>
+                        <small class="form-text">Selecciona al menos una categoría para el evento</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventImage" class="form-label">Imagen del Evento</label>
+                        <input type="file" id="eventImage" name="eventImage" class="form-control" 
+                               accept="image/*">
+                        <small class="form-text">Formatos aceptados: JPG, PNG, GIF (máx. 5MB)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Crear Evento</button>
+                        <a href="../index.html" class="btn btn-secondary">Cancelar</a>
+                    </div>
+
+                    <div id="eventError" class="alert alert-danger" style="display: none;"></div>
+                    <div id="eventSuccess" class="alert alert-success" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+
+        // Check user authentication
+        function checkUserAuth() {
+            const currentUser = localStorage.getItem('currentUser');
+            const guestAuth = document.getElementById('guestAuth');
+            const userAuth = document.getElementById('userAuth');
+            const profileSection = document.getElementById('profileSection');
+            const profileLink = document.getElementById('profileLink');
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            const userImage = document.getElementById('userImage');
+            const userInitial = document.getElementById('userInitial');
+            const userProfileLink = document.getElementById('userProfileLink');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                
+                // Check if user is organizador
+                if (user.type !== 'organizador') {
+                    alert('Esta funcionalidad está disponible solo para organizadores.');
+                    window.location.href = '../index.html';
+                    return;
+                }
+                
+                guestAuth.style.display = 'none';
+                userAuth.style.display = 'block';
+                profileSection.style.display = 'block';
+                
+                // Update user name in header
+                userName.textContent = user.name;
+                
+                // Update profile links with user nickname
+                profileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                userProfileLink.href = `user-profile.html?nickname=${user.nickname}`;
+                
+                // Update user avatar - try to show image, fallback to initial
+                if (user.image) {
+                    userImage.src = `../../imagens/${user.image}`;
+                    userImage.alt = user.name;
+                    userImage.style.display = 'block';
+                    userInitial.style.display = 'none';
+                    
+                    // Handle image load error
+                    userImage.onerror = function() {
+                        userImage.style.display = 'none';
+                        userInitial.style.display = 'flex';
+                        userInitial.textContent = user.name.charAt(0).toUpperCase();
+                    };
+                } else {
+                    userImage.style.display = 'none';
+                    userInitial.style.display = 'flex';
+                    userInitial.textContent = user.name.charAt(0).toUpperCase();
+                }
+                
+                // Show organizer options (since this page is organizer-only)
+                const assistantLink = document.getElementById('assistantLink');
+                const organizerLink1 = document.getElementById('organizerLink1');
+                const organizerLink2 = document.getElementById('organizerLink2');
+                const organizerLink3 = document.getElementById('organizerLink3');
+                
+                if (assistantLink) assistantLink.style.display = 'none';
+                if (organizerLink1) organizerLink1.style.display = 'block';
+                if (organizerLink2) organizerLink2.style.display = 'block';
+                if (organizerLink3) organizerLink3.style.display = 'block';
+                
+            } else {
+                // Redirect non-authenticated users to login
+                alert('Debe iniciar sesión como organizador para acceder a esta página.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
+                localStorage.removeItem('currentUser');
+                alert('Sesión cerrada correctamente');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Form submission
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Procesando...';
+            submitButton.disabled = true;
+            
+            // Clear previous messages
+            document.getElementById('eventError').style.display = 'none';
+            document.getElementById('eventSuccess').style.display = 'none';
+            
+            const formData = new FormData(this);
+            const eventName = formData.get('eventName').trim();
+            const eventDescription = formData.get('eventDescription').trim();
+            
+            // Get selected categories
+            const selectedCategories = [];
+            const categoryCheckboxes = document.querySelectorAll('input[name="eventCategories"]:checked');
+            categoryCheckboxes.forEach(checkbox => {
+                selectedCategories.push(checkbox.value);
+            });
+            
+            // Basic validation
+            if (!eventName || !eventDescription || selectedCategories.length === 0) {
+                let errorMessage = 'Todos los campos marcados con * son obligatorios';
+                if (selectedCategories.length === 0) {
+                    errorMessage = 'Debes seleccionar al menos una categoría para el evento';
+                }
+                
+                document.getElementById('eventError').textContent = errorMessage;
+                document.getElementById('eventError').style.display = 'block';
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
+            // Simulate event creation
+            setTimeout(() => {
+                const categoriesText = selectedCategories.map(cat => 
+                    cat.charAt(0).toUpperCase() + cat.slice(1)
+                ).join(', ');
+                document.getElementById('eventSuccess').textContent = `¡Evento "${eventName}" creado exitosamente con categorías: ${categoriesText}!`;
+                document.getElementById('eventSuccess').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 2000);
+            }, 1000);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserAuth();
+        });
+    </script>
+</body>
+</html>
